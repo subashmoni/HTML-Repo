@@ -1,0 +1,29 @@
+.dry .card{
+    border: none;
+    background-color: green;
+    text-align: center;
+    color: white;
+}
+.head .card{
+    background-color: rgb(235, 52, 83);
+    text-align: center;
+    color: white;
+}
+.fev .card{
+    background-color: blueviolet;
+    text-align: center;
+    color: white;
+}
+.the{
+    height: 150px;
+    width: 150px;
+}
+.to{
+    height: 150px;
+    width: 150px;
+}
+.on{
+    height: 150px;
+    width: 150px;  
+}
+

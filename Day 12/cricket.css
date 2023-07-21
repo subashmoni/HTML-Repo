@@ -1,0 +1,26 @@
+.kl{
+    background-color: #fb4e71;
+    height: 50px;
+    width: 50px;
+     color: white;
+   
+    height: 200px;
+    width: 500px;
+   
+}
+.ra{
+    position: relative;
+    left: 380px;
+    bottom: 150px;
+}
+.img1{
+    height: 100px;
+    width: 100px;
+}
+.rahul{
+    width: 500px;
+}
+button{
+    position: relative;
+    right: 190px;
+}

@@ -1,0 +1,16 @@
+.syntex{
+    height: 250px;
+    background-image: url("https://d1tgh8fmlzexmh.cloudfront.net/ccbp-static-website/diwali-bg.png");
+background-size: cover;
+color: white;
+font-size: 30px;
+}
+.card{
+    top: auto;
+    left: 500px;
+}
+button{
+   position: relative;
+     left: 400px; 
+   
+}

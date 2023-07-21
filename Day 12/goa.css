@@ -1,0 +1,28 @@
+.home{
+    height: 100vh;
+    width: 100%;
+}
+    .lit{
+        margin-left: 100px;
+    }  
+
+.coc{
+    margin-left: 250px;
+    position: relative;
+    bottom: 94px;
+}
+
+.big{
+    margin-left: 400px;
+    position: relative;
+    bottom: 190px;
+}
+.vid{
+    margin-left: 40px;
+}
+.vid1{
+margin-left: 40px;
+}
+.vid2{
+margin-left: 40px;
+}
