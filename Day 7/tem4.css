@@ -1,0 +1,22 @@
+.land{
+   background-image: url("landscap.jpg");
+   background-size: cover;
+}
+.we{
+    margin-left: 80%;
+    margin-top: 20%;
+    color: white;
+    font-size: 150%;
+    
+}
+.are{
+    margin-left: 65%;
+    color: white;
+    font-size: 200%;
+    
+}
+.our{
+    margin-left: 70%;
+    font-size: 150%;
+    color: white;
+}

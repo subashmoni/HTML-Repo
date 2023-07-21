@@ -1,0 +1,19 @@
+.cls{
+    background-image: url("flower image.jpg");
+    background-size: contain;
+    height: 300px;
+    width: 100%;
+    margin-top: 30px;
+}
+.flo{
+    font-size: 350%;
+    color: red;
+    margin-left: 60%;
+}
+.sub{
+    font-size: 50px;
+    font-style:inherit;
+}
+.phn{
+    block-size: 20%;
+}

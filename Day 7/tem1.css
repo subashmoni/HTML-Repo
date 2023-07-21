@@ -1,0 +1,30 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Rubik+Iso&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&family=Rubik+Iso&display=swap'); */
+
+  @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&family=Rubik+Iso&display=swap');
+
+
+
+
+.main{
+    background-image: url("food\ image.jpg");
+    background-size: cover;
+    color: white;
+    padding: 20%;
+}
+
+.pra{
+ font-family: Rubik Iso;
+ font-size: large;
+ margin-left: 30%;
+}
+.para{
+    font-family: Pacifico;
+    font-size: 50px;
+    margin-left: 10%;
+}
+.lit{
+    margin-left: 140px;
+}
+

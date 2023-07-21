@@ -1,0 +1,13 @@
+.new{
+    background-image: url("frout.jpg");
+    background-size: cover;
+}
+.res{
+    margin-top: 20%;
+}
+.eng{
+    font-size: 200%;
+}
+button{
+    background: transparent;
+}
