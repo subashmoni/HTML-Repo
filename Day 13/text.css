@@ -1,0 +1,162 @@
+.food{
+    color: green;
+    position: relative;
+    bottom: 250px;
+    left: 130px;
+}
+.org{
+    font-size: 40px;
+    color: orange;
+    position: relative;
+    bottom: 270px;
+    left: 60px;
+}
+.found{
+    color: white;
+    position: relative;
+    bottom: 280px;
+    left: 60px;
+}
+.fa-solid.fa-bars{
+    position: relative;
+    left: 1100px;
+}
+.fa-solid.fa-leaf{
+    text-align: center;
+    font-size: 30px;
+    position: relative;
+    left: 30px;
+}
+.para{
+    position: relative;
+    left: 30px;
+}
+.btn{
+    position: relative;
+    bottom: 280px;
+    left: 60px;
+    height: 50px;
+    width: 150px;
+}
+.work{
+    border: 2px solid black;
+    background-color: green;
+    height: 800px;
+    width: 100%;
+    position: relative;
+    bottom: 221px;
+}
+.goat{
+    position: relative;
+    left: 40px;
+}
+.bord{
+    background-color: white;
+    border: 1px solid white; 
+    height:300px;
+    width: 350px;
+    position: relative;
+    bottom: 870px;
+    left: 500px;
+    text-align: center;
+}
+.fort{
+    position: relative;
+    top: 60px;
+}
+.cont{
+    position: relative;
+    top: 60px;
+} 
+.cow{
+    background-color: white;
+    border: 1px solid black;
+    height: 300px;
+    width: 350px;
+    position: relative;
+    bottom: 850px;
+    left: 40px;
+    text-align: center;
+    font-size: 30px;
+}
+.frt{
+    position: relative;
+    left: 500px;
+    bottom: 1150px;
+}
+.app{
+    position: relative;
+    left: 950px;
+    bottom: 1770px;
+}
+.border{
+    background-color: white;
+    border: 1px solid black;
+    height: 300px;
+    width: 350px;
+    position: relative;
+    left: 950px;
+    bottom: 1750px;
+}
+.fa-solid.fa-tractor{
+    
+font-size: 30px;
+    position: relative;
+    left: 120px;
+    top: 20px;
+}
+.per{
+    position: relative;
+    top: 60px;
+}
+.veg{
+    position: relative;
+    bottom: 1712px;
+}
+.our{
+    position: relative;
+    bottom: 2110px;
+    left: 120px;
+}
+.farm{
+    position: relative;
+    bottom: 2100px; 
+    left: 200px;
+}
+.vegi{
+    color: white;
+    position: relative;
+    bottom: 210px;
+}
+.more{
+    position: relative;
+    bottom: 2110px;
+    left: 80px;
+}
+.about{
+    border: 1px solid black;
+    height: 300px;
+    width: 100%;
+    position: relative;
+    bottom: 1920px;
+}
+.card{
+    width: 300px;
+    position: relative;
+    top: 80px;
+}
+.cow{
+    height: 500px;
+    width: 50%;
+    position: relative;
+bottom: 1680px;  
+border: 1px solid black;
+}
+.line{
+    border: 1px solid black;
+    height: 500px;
+    width: 45%;
+    position: relative;
+    bottom: 2180px;
+    left: 713px;
+}
