@@ -1,0 +1,19 @@
+.frm{
+    background-image: url("news.png");
+   background-repeat: no-repeat; 
+   height: 500px;
+   width: 500px;
+   margin-left: 300px;
+   margin-top: 50px;
+   transform: rotate(-20deg);
+    }
+    .ash{
+        background-image: url("news1.png");
+        background-repeat: no-repeat;
+        height: 800px;
+        width: 500px;
+        position: relative;
+        bottom: 420px;
+        margin-left: 300px;
+        transform: rotate(20deg);
+    }

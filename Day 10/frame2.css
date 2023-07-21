@@ -1,0 +1,22 @@
+body{
+    background-color: rgb(238, 21, 57);
+}
+.tab{
+    background-image: url("dhoni.jpg");
+    background-size: cover;
+    height: 500px;
+    width: 400px;
+    margin-left: 200px;
+    margin-top: 70px;
+    transform: rotate(-20deg);
+    
+}
+.tb{
+    background-image: url("Raina1.jpg");
+    background-size: cover;
+    height: 500px;
+    width: 400px;
+    margin-left: 700px;
+    margin-bottom: 80%;
+    transform: rotate(20deg);
+}
