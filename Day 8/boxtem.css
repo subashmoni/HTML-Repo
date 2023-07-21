@@ -1,0 +1,49 @@
+.box{
+    background-image: url("photo.jpg");
+    background-size: cover;
+    }
+    .con{
+        font-size: 200%;
+       position: relative;
+       left: 500px;  
+    }
+    .div{
+        border: 7px solid black;
+        width: 600px;
+        height: 600px;
+        position: relative;
+        left: 400px;
+        top: 30px;
+        text-align: left;
+        padding-left: 60px;
+        font-size: 40px;
+        }
+    .lor{
+        font-size: 20px;
+    }
+    .pls{
+        border-top: none;
+        border-left: none;
+        border-right: none;
+         background: transparent;
+
+    }
+    .pla{
+        border-top: none;
+        border-left: none;
+        border-right: none;
+         background: transparent;
+        
+    }
+    .you{
+        border-top: none;
+        border-left: none;
+        border-right: none;
+         background: transparent;
+    }
+    button{
+        
+        position: relative;
+        left: 150px;
+        background: transparent;
+    }
