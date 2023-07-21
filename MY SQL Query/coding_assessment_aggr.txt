@@ -1,0 +1,295 @@
+11. display the list of employees who have joined the company before 30th june 80 or after 31st dec 80
+
+mysql> select * from employee where doj not between '2080-05-31' and '2080-12-31';
++--------+-----------+------+---------+------------+
+| emp_id | emp_name  | role | dep_num | doj        |
++--------+-----------+------+---------+------------+
+| 105    | amudhavan | hr   |       5 | 2080-05-15 |
+| 106    | amu       | hr   |       5 | 2080-04-15 |
++--------+-----------+------+---------+------------+
+13. display the names of employee working in department number 10 or 20 and working as clerks, salesman or analyst.
+
+ select * from employee;
++--------+-----------+---------------+---------+------------+
+| emp_id | emp_name  | role          | dep_num | doj        |
++--------+-----------+---------------+---------+------------+
+| 101    |  boss     | developer     |       1 | 2080-05-31 |
+| 102    |  Ashok    | CEO           |       2 | 2080-05-31 |
+| 102    |  Ashok    | CEO           |       2 | 2080-06-20 |
+| 103    |  kamash   | Assistant_CEO |       3 | 2080-07-20 |
+| 105    | amudhavan | hr            |       5 | 2080-05-15 |
+| 106    | amu       | hr            |       5 | 2080-04-15 |
+| 107    | aaa       | clerk         |       6 | 2080-04-18 |
+| 108    | bbb       | Salesman      |      15 | 2080-04-18 |
+| 109    | ccc       | Salesman      |      10 | 2080-04-18 |
+| 110    | ddd       | analyis       |      20 | 2080-04-18 |
++--------+-----------+---------------+---------+------------+
+
+mysql> select emp_name from employee where dep_num=10 or dep_num=20 and role='Salesman' or role='analyis';
++----------+
+| emp_name |
++----------+
+| ccc      |
+| ddd      |
++----------+
+
+Display employee name from employees whose name ends with alphabet N.
+
+
+mysql> select emp_name from employee where emp_name like '%n';
++-----------+
+| emp_name  |
++-----------+
+| amudhavan |
++-----------+
+
+diaplay the names of employees whose names have second alphabet A in their names
+
+ select emp_name from employee where emp_name like '_a%';
++----------+
+| emp_name |
++----------+
+|  Ashok   |
+|  Ashok   |
+| aaa      |
+| sam      |
++----------+
+
+
+display the uniques jobs in emp table.
+
+
+mysql> select distinct role from employee;
++---------------+
+| role          |
++---------------+
+| developer     |
+| CEO           |
+| Assistant_CEO |
+| hr            |
+| clerk         |
+| Salesman      |
+| analyis       |
++---------------+
+7 rows in set (0.10 sec)
+
+19. display the names of employee who are not working as salesman or clerk or analyst.
+
+mysql> select emp_name from employee where not (role='Salesman' or role='analyis' or role='clerk');
++-----------+
+| emp_name  |
++-----------+
+|  boss     |
+|  Ashok    |
+|  Ashok    |
+|  kamash   |
+| amudhavan |
+| amu       |
++-----------+
+6 rows in set (0.00 sec)
+
+20 display the names and salary of employees in descending order of salary.
+
+mysql> select emp_name from employee order by salary desc;
++-----------+
+| emp_name  |
++-----------+
+|  Ashok    |
+|  Ashok    |
+|  kamash   |
+|  boss     |
+| amudhavan |
+| amu       |
+| aaa       |
+| bbb       |
+| ccc       |
+| ddd       |
+| subas     |
+| sam       |
++-----------+
+12 rows in set (0.00 sec)
+
+display the names names,job, salary and increased by 15% labbel the column new salary.
+
+mysql> select emp_name, role,salary*15/100 as new_salary from employee;
++-----------+---------------+----------------+
+| emp_name  | role          | new_salary     |
++-----------+---------------+----------------+
+|  boss     | developer     |     15000.0000 |
+|  Ashok    | CEO           | 150000000.0000 |
+|  Ashok    | CEO           | 150000000.0000 |
+|  kamash   | Assistant_CEO | 150000000.0000 |
+| amudhavan | hr            |      1500.0000 |
+| amu       | hr            |       150.0000 |
+| aaa       | clerk         |       150.0000 |
+| bbb       | Salesman      |       150.0000 |
+| ccc       | Salesman      |       150.0000 |
+| ddd       | analyis       |       150.0000 |
+| subas     | analyis       |       150.0000 |
+| sam       | salesman      |       150.0000 |
++-----------+---------------+----------------+
+12 rows in set (0.07 sec)
+
+Display the name of the employee whose name contains 'll'
+
+mysql> select emp_name from employee where emp_name like '%ll%';
++----------+
+| emp_name |
++----------+
+| jull     |
+| ella     |
++----------+
+2 rows in set (0.00 sec)
+
+display the name of the employee whose name contain 'A' as 4th character.
+
+ select emp_name from employee where emp_name like '___a%';
++----------+
+| emp_name |
++----------+
+| subas    |
+| ella     |
+| subash   |
+| vijay    |
++----------+
+4 rows in set (0.00 sec)
+
+
+displat the name, job and salary of the employees whose salary is not in the range of 2000 and 3000.
+\
+mysql> select emp_name, role, salary from employee where salary not between 2000 and 3000;
++-----------+---------------+------------+
+| emp_name  | role          | salary     |
++-----------+---------------+------------+
+|  boss     | developer     |     100000 |
+|  Ashok    | CEO           | 1000000000 |
+|  Ashok    | CEO           | 1000000000 |
+|  kamash   | Assistant_CEO | 1000000000 |
+| amudhavan | hr            |      10000 |
+| amu       | hr            |       1000 |
+| aaa       | clerk         |       1000 |
+| ddd       | analyis       |       1000 |
+| subas     | analyis       |       1000 |
+| sam       | salesman      |       1000 |
+| subash    | analyis       |        100 |
+| vijay     | analyis       |        100 |
++-----------+---------------+------------+
+12 rows in set (0.00 sec)
+
+display the empno,job and hiredate of the employee who don't have manager
+
+mysql> select * from employee;
++--------+-----------+---------------+---------+------------+------------+
+| emp_id | emp_name  | role          | dep_num | doj        | salary     |
++--------+-----------+---------------+---------+------------+------------+
+| 101    |  boss     | developer     |       1 | 2080-05-31 |     100000 |
+| 102    |  Ashok    | CEO           |       2 | 2080-05-31 | 1000000000 |
+| 102    |  Ashok    | CEO           |       2 | 2080-06-20 | 1000000000 |
+| 103    |  kamash   | Assistant_CEO |       3 | 2080-07-20 | 1000000000 |
+| 105    | amudhavan | hr            |       5 | 2080-05-15 |      10000 |
+| 106    | amu       | manager       |       5 | 2080-04-15 |       1000 |
+| 107    | aaa       | clerk         |       6 | 2080-04-18 |       1000 |
+| 108    | bbb       | Salesman      |      15 | 2080-04-18 |       2200 |
+| 109    | ccc       | Salesman      |      10 | 2080-04-18 |       2500 |
+| 110    | ddd       | manager       |      20 | 2080-04-18 |       1000 |
+| 110    | subas     | manager       |      60 | 2080-07-18 |       1000 |
+| 111    | sam       | salesman      |      33 | 2080-07-18 |       1000 |
+| 113    | jull      | analyis       |      60 | 2080-07-18 |       2000 |
+| 114    | ella      | analyis       |      60 | 2080-07-18 |       2000 |
+| 115    | subash    | analyis       |      60 | 2080-07-18 |        100 |
+| 115    | vijay     | analyis       |      60 | 2080-07-18 |        100 |
++--------+-----------+---------------+---------+------------+------------+
+16 rows in set (0.00 sec)
+
+mysql> select emp_id, role, doj from employee where not role='manager';
++--------+---------------+------------+
+| emp_id | role          | doj        |
++--------+---------------+------------+
+| 101    | developer     | 2080-05-31 |
+| 102    | CEO           | 2080-05-31 |
+| 102    | CEO           | 2080-06-20 |
+| 103    | Assistant_CEO | 2080-07-20 |
+| 105    | hr            | 2080-05-15 |
+| 107    | clerk         | 2080-04-18 |
+| 108    | Salesman      | 2080-04-18 |
+| 109    | Salesman      | 2080-04-18 |
+| 111    | salesman      | 2080-07-18 |
+| 113    | analyis       | 2080-07-18 |
+| 114    | analyis       | 2080-07-18 |
+| 115    | analyis       | 2080-07-18 |
+| 115    | analyis       | 2080-07-18 |
++--------+---------------+------------+
+13 rows in set (0.00 sec)s
+
+
+display the name and hiredate of the employee who have joined in the year 81
+
+mysql> select emp_name, doj from employee where doj like '2081%';
++----------+------------+
+| emp_name | doj        |
++----------+------------+
+| amu      | 2081-04-24 |
+| ddd      | 2081-07-23 |
+| subas    | 2081-07-23 |
++----------+------------+
+3 rows in set (0.00 sec)
+
+
+display the name and hiredate of the employee first half of year in 81.
+
+mysql> select emp_name, doj from employee where doj not like '2081%';
++-----------+------------+
+| emp_name  | doj        |
++-----------+------------+
+|  boss     | 2080-05-31 |
+|  Ashok    | 2080-05-31 |
+|  Ashok    | 2080-06-20 |
+|  kamash   | 2080-07-20 |
+| amudhavan | 2080-05-15 |
+| aaa       | 2080-04-18 |
+| bbb       | 2080-04-18 |
+| ccc       | 2080-04-18 |
+| sam       | 2080-07-18 |
+| jull      | 2080-07-18 |
+| ella      | 2080-07-18 |
+| subash    | 2080-07-18 |
+| vijay     | 2080-07-18 |
++-----------+------------+
+13 rows in set (0.02 sec)
+
+29. display the following output.
+
+mysql> select emp_name, salary*3 as new_salary from employee;
++-----------+------------+
+| emp_name  | new_salary |
++-----------+------------+
+|  boss     |     300000 |
+|  Ashok    | 3000000000 |
+|  Ashok    | 3000000000 |
+|  kamash   | 3000000000 |
+| amudhavan |      30000 |
+| amu       |       3000 |
+| aaa       |       3000 |
+| bbb       |       6600 |
+| ccc       |       7500 |
+| ddd       |       3000 |
+| subas     |       3000 |
+| sam       |       3000 |
+| jull      |       6000 |
+| ella      |       6000 |
+| subash    |        300 |
+| vijay     |        300 |
++-----------+------------+
+16 rows in set (0.00 sec) 
+
+30 display the details of the employees who have joined in the mouth of may.
+
+mysql> select * from employee where doj like '%05%';
++--------+-----------+-----------+---------+------------+------------+
+| emp_id | emp_name  | role      | dep_num | doj        | salary     |
++--------+-----------+-----------+---------+------------+------------+
+| 101    |  boss     | developer |       1 | 2080-05-31 |     100000 |
+| 102    |  Ashok    | CEO       |       2 | 2080-05-31 | 1000000000 |
+| 105    | amudhavan | hr        |       5 | 2080-05-15 |      10000 |
++--------+-----------+-----------+---------+------------+------------+
+3 rows in set (0.00 sec)

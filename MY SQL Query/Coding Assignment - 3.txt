@@ -1,0 +1,224 @@
+1) Create the following tables
+
+a) studentprofile(rollno,name,dob,department,city)
+
+mysql> create table std_pro(rollno int, name char(20), dob date, department char(20), city char(10));
+Query OK, 0 rows affected (0.30 sec)
+
+mysql> desc std_pro;
++------------+----------+------+-----+---------+-------+
+| Field      | Type     | Null | Key | Default | Extra |
++------------+----------+------+-----+---------+-------+
+| rollno     | int      | YES  |     | NULL    |       |
+| name       | char(20) | YES  |     | NULL    |       |
+| dob        | date     | YES  |     | NULL    |       |
+| department | char(20) | YES  |     | NULL    |       |
+| city       | char(10) | YES  |     | NULL    |       |
++------------+----------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+
+b) marks (rollno,name,mark1,mark2)
+
+mysql> desc marks;
++--------+----------+------+-----+---------+-------+
+| Field  | Type     | Null | Key | Default | Extra |
++--------+----------+------+-----+---------+-------+
+| rollno | int      | YES  |     | NULL    |       |
+| name   | char(20) | YES  |     | NULL    |       |
+| mark1  | int      | YES  |     | NULL    |       |
+| mark2  | int      | YES  |     | NULL    |       |
++--------+----------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+2) insert 5 different records to the above tables.
+
+
+mysql> select * from std_pro;
++--------+-------------+------------+------------+------------+
+| rollno | name        | dob        | department | city       |
++--------+-------------+------------+------------+------------+
+|   1001 | Ashok       | 2001-03-21 | sp         | Coimbatore |
+|   1002 | Bharathi    | 2001-04-13 | sp         | Coimbatore |
+|   1003 | Subash      | 2001-02-03 | sp         | Coimbatore |
+|   1004 | Afrith      | 2001-07-09 | sp         | Erode      |
+|   1005 | Sudharsanan | 2001-05-21 | sp         | Namakkal   |
++--------+-------------+------------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into marks values(1001, 'Ashok', 15, 20),(1002, 'Bharathi', 20, 35),(1003, 'Subash', 20, 30),(1004, 'Afrith', 25, 30), (1005, 'Sudharsanan', 30, 25);
+Query OK, 5 rows affected (0.05 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from marks;
++--------+-------------+-------+-------+
+| rollno | name        | mark1 | mark2 |
++--------+-------------+-------+-------+
+|   1001 | Ashok       |    15 |    20 |
+|   1002 | Bharathi    |    20 |    35 |
+|   1003 | Subash      |    20 |    30 |
+|   1004 | Afrith      |    25 |    30 |
+|   1005 | Sudharsanan |    30 |    25 |
++--------+-------------+-------+-------+
+5 rows in set (0.00 sec)
+
+
+3) add a column total to marks table.
+7) Calculate total marks for each student and update in marks table.
+
+mysql> update marks set total=mark1+mark2;
+Query OK, 5 rows affected (0.08 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+mysql> select * from marks;
++--------+-------------+-------+-------+-------+
+| rollno | name        | mark1 | mark2 | total |
++--------+-------------+-------+-------+-------+
+|   1001 | Ashok       |    15 |    20 |    35 |
+|   1002 | Bharathi    |    20 |    35 |    55 |
+|   1003 | Subash      |    20 |    30 |    50 |
+|   1004 | Afrith      |    25 |    30 |    55 |
+|   1005 | Sudharsanan |    30 |    25 |    55 |
++--------+-------------+-------+-------+-------+
+5 rows in set (0.00 sec)
+
+4) change the column name dob to dateofbirth.
+5) display the structure of the above tables.
+
+mysql> select * from std_pro;
++--------+-------------+-------------+------------+------------+
+| rollno | name        | dateofbirth | department | city       |
++--------+-------------+-------------+------------+------------+
+|   1001 | Ashok       | 2001-03-21  | sp         | Coimbatore |
+|   1002 | Bharathi    | 2001-04-13  | sp         | Coimbatore |
+|   1003 | Subash      | 2001-02-03  | sp         | Coimbatore |
+|   1004 | Afrith      | 2001-07-09  | sp         | Erode      |
+|   1005 | Sudharsanan | 2001-05-21  | sp         | Namakkal   |
++--------+-------------+-------------+------------+------------+
+5 rows in set (0.00 sec)
+
+6) List the tables which you have created.
+
+mysql> show tables;
++--------------------+
+| Tables_in_sql_day1 |
++--------------------+
+| aravinth_prac      |
+| customer           |
+| e_commerce         |
+| emp_det            |
+| marks              |
+| order_details      |
+| player             |
+| std_pro            |
+| student            |
++--------------------+
+9 rows in set (0.15 sec)
+
+
+8) remove the 4 th rollno from studentprofile  table.
+
+mysql> delete from std_pro where rollno=1004;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from std_pro;
++--------+-------------+-------------+------------+------------+
+| rollno | name        | dateofbirth | department | city       |
++--------+-------------+-------------+------------+------------+
+|   1001 | Ashok       | 2001-03-21  | sp         | Coimbatore |
+|   1002 | Bharathi    | 2001-04-13  | sp         | Coimbatore |
+|   1003 | Subash      | 2001-02-03  | sp         | Coimbatore |
+|   1005 | Sudharsanan | 2001-05-21  | sp         | Namakkal   |
++--------+-------------+-------------+------------+------------+
+4 rows in set (0.00 sec)
+
+
+11) add two more columns average and grade
+
+to marks table.
+12) calculate the average for all the students.
+
+mysql> alter table marks add average float;
+Query OK, 0 rows affected (0.12 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update marks set average=mark1+mark2/2;
+Query OK, 5 rows affected (0.13 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> select * from marks;
++--------+-------------+-------+-------+-------+---------+
+| rollno | name        | mark1 | mark2 | total | average |
++--------+-------------+-------+-------+-------+---------+
+|   1001 | Ashok       |    15 |    20 |    35 |      25 |
+|   1002 | Bharathi    |    20 |    35 |    55 |    37.5 |
+|   1003 | Subash      |    20 |    30 |    50 |      35 |
+|   1004 | Afrith      |    25 |    30 |    55 |      40 |
+|   1005 | Sudharsanan |    30 |    25 |    55 |    42.5 |
++--------+-------------+-------+-------+-------+---------+
+5 rows in set (0.00 sec)
+
+
+13) Calculate the grade (if both the marks are
+
+above 40 then grade should be pass
+
+if less than 40 grade should be fail).
+
+mysql> update marks set grade='Fail' where rollno=1001;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update marks set grade='Pass' where rollno=1002;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update marks set grade='Pass' where rollno=1003;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update marks set grade='Pass' where rollno=1004;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update marks set grade='Pass' where rollno=1005;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from marks;
++--------+-------------+-------+-------+-------+---------+-------+
+| rollno | name        | mark1 | mark2 | total | average | grade |
++--------+-------------+-------+-------+-------+---------+-------+
+|   1001 | Ashok       |    15 |    20 |    35 |      25 | Fail  |
+|   1002 | Bharathi    |    20 |    35 |    55 |    37.5 | Pass  |
+|   1003 | Subash      |    20 |    30 |    50 |      35 | Pass  |
+|   1004 | Afrith      |    25 |    30 |    55 |      40 | Pass  |
+|   1005 | Sudharsanan |    30 |    25 |    55 |    42.5 | Pass  |
++--------+-------------+-------+-------+-------+---------+-------+
+5 rows in set (0.00 sec)
+
+14) Remove the column average .
+
+mysql> alter table marks drop column average;
+Query OK, 0 rows affected (0.38 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from marks;
++--------+-------------+-------+-------+-------+-------+
+| rollno | name        | mark1 | mark2 | total | grade |
++--------+-------------+-------+-------+-------+-------+
+|   1001 | Ashok       |    15 |    20 |    35 | Fail  |
+|   1002 | Bharathi    |    20 |    35 |    55 | Pass  |
+|   1003 | Subash      |    20 |    30 |    50 | Pass  |
+|   1004 | Afrith      |    25 |    30 |    55 | Pass  |
+|   1005 | Sudharsanan |    30 |    25 |    55 | Pass  |
++--------+-------------+-------+-------+-------+-------+
+5 rows in set (0.00 sec)
+
+15) Remove all the records from the table.
+16) confirm your changes
+
+mysql> truncate table marks;
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> select * from marks;
+Empty set (0.02 sec)

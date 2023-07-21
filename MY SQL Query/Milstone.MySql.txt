@@ -1,0 +1,142 @@
+1 . Create a table with suitable constraints and fill the table with following dataset.
+
+mysql> desc empt_det;
++------------+----------+------+-----+---------+-------+
+| Field      | Type     | Null | Key | Default | Extra |
++------------+----------+------+-----+---------+-------+
+| id_no      | int      | YES  |     | NULL    |       |
+| name       | char(20) | YES  |     | NULL    |       |
+| department | char(20) | YES  |     | NULL    |       |
+| DoA        | date     | YES  |     | NULL    |       |
+| genter     | char(20) | YES  |     | NULL    |       |
+| salary     | int      | YES  |     | NULL    |       |
++------------+----------+------+-----+---------+-------+
+6 rows in set (0.07 sec)
+
+
+mysql> select * from empt_det;
++-------+--------+------------+------------+--------+--------+
+| id_no | name   | department | DoA        | genter | salary |
++-------+--------+------------+------------+--------+--------+
+|     1 | subash | tamil      | 1999-02-01 | male   |  25000 |
+|     2 | moni   | engilsh    | 1998-02-03 | female |  35000 |
+|     3 | jeery  | match      | 2000-04-05 | female |  20000 |
+|     4 | ashok  | science    | 1995-08-05 | male   |  40000 |
+|     5 | kamesh | history    | 2000-10-08 | male   |  27000 |
+|     6 | kamali | history    | 2002-11-07 | female |  30000 |
++-------+--------+------------+------------+--------+--------+
+6 rows in set (0.00 sec)
+
+
+2. Write an SQL Query to select all the information of teachers in computer department.
+
+mysql> select * from empt_det where department="science";
++-------+-------+------------+------------+--------+--------+
+| id_no | name  | department | DoA        | genter | salary |
++-------+-------+------------+------------+--------+--------+
+|     4 | ashok | science    | 1995-08-05 | male   |  40000 |
++-------+-------+------------+------------+--------+--------+
+1 row in set (0.00 sec)
+
+
+3. Write a query to list the name of female teachers in History department.
+
+mysql> select * from empt_det where department="history" and genter="female";
++-------+--------+------------+------------+--------+--------+
+| id_no | name   | department | DoA        | genter | salary |
++-------+--------+------------+------------+--------+--------+
+|     6 | kamali | history    | 2002-11-07 | female |  30000 |
++-------+--------+------------+------------+--------+--------+
+1 row in set (0.00 sec)
+
+
+4.list all names of teachers with date of admission in ascending order.
+
+mysql> select name,DoA from empt_det order by DoA;
++--------+------------+
+| name   | DoA        |
++--------+------------+
+| ashok  | 1995-08-05 |
+| moni   | 1998-02-03 |
+| subash | 1999-02-01 |
+| jeery  | 2000-04-05 |
+| kamesh | 2000-10-08 |
+| kamali | 2002-11-07 |
++--------+------------+
+6 rows in set (0.00 sec)
+
+
+5.display Teacher’s name, Department, and Salary of male teacher.
+
+mysql> select name,department,DoA,salary from empt_det where genter="male";
++--------+------------+------------+--------+
+| name   | department | DoA        | salary |
++--------+------------+------------+--------+
+| subash | tamil      | 1999-02-01 |  25000 |
+| ashok  | science    | 1995-08-05 |  40000 |
+| kamesh | history    | 2000-10-08 |  27000 |
++--------+------------+------------+--------+
+3 rows in set (0.00 sec)
+
+
+6.To count the number of items whose salary is less than 10,000.
+
+mysql> select count(salary) from empt_det where salary<25000;
++---------------+
+| count(salary) |
++---------------+
+|             1 |
++---------------+
+1 row in set (0.13 sec)
+
+
+7.To insert a new record in the Teacher table with the following data: 8,”Mersha”,”computer”,{1/1/2000},12000,”m”
+
+mysql> select * from empt_det;
++-------+--------+------------+------------+--------+--------+
+| id_no | name   | department | DoA        | genter | salary |
++-------+--------+------------+------------+--------+--------+
+|     1 | subash | tamil      | 1999-02-01 | male   |  25000 |
+|     2 | moni   | engilsh    | 1998-02-03 | female |  35000 |
+|     3 | jeery  | match      | 2000-04-05 | female |  20000 |
+|     4 | ashok  | science    | 1995-08-05 | male   |  40000 |
+|     5 | kamesh | history    | 2000-10-08 | male   |  27000 |
+|     6 | kamali | history    | 2002-11-07 | female |  30000 |
+|     7 | mersha | computer   | 2000-01-01 | male   |  12000 |
++-------+--------+------------+------------+--------+--------+
+7 rows in set (0.00 sec)
+
+
+8.List the teacher detail who is getting the minimum salary.
+
+mysql> select name,salary from empt_det where salary=(select min(salary)from empt_det);
++--------+--------+
+| name   | salary |
++--------+--------+
+| mersha |  12000 |
++--------+--------+
+1 row in set (0.06 sec)
+
+
+9. List the teacher detail who is getting the second minimum salary.
+
+mysql> select * from empt_det where salary=(select min(salary) from empt_det where salary not in (select min(salary) from empt_det));
++-------+-------+------------+------------+--------+--------+
+| id_no | name  | department | DoA        | genter | salary |
++-------+-------+------------+------------+--------+--------+
+|     3 | jeery | match      | 2000-04-05 | female |  20000 |
++-------+-------+------------+------------+--------+--------+
+1 row in set (0.07 sec)
+
+
+10. List down the average salary of the teachers belongs to History department.
+
+mysql> select name, department, avg(salary) from empt_det where department="history" group by name;
++--------+------------+-------------+
+| name   | department | avg(salary) |
++--------+------------+-------------+
+| kamesh | history    |  27000.0000 |
+| kamali | history    |  30000.0000 |
++--------+------------+-------------+
+2 rows in set (0.03 sec)
+

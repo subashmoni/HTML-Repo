@@ -1,0 +1,252 @@
+1. Write a query to display the name,job.salary department name and department number for all employees.
+
+mysql> select e.ename,e.designation,e.salary,e.department_number,c.dep_name from emp_det as e inner join candidate as c on e.empno = c.empno;
++------------+-------------+--------+-------------------+-------------+
+| ename      | designation | salary | department_number | dep_name    |
++------------+-------------+--------+-------------------+-------------+
+| Ashok      | Clerk       |  10350 |                10 | Accountant  |
+| Subash     | Clerk       |  10350 |                10 | Accountant  |
+| Bharathi   | Clerk       |  10350 |                10 | Accountant  |
+| Saileh     | Analyst     |  12650 |                20 | IT          |
+| Mithun     | Analyst     |  12650 |                20 | IT          |
+| Prasanth   | Analyst     |  12650 |                20 | IT          |
+| Sudharsan  | Salesman    |   9775 |                30 | Marketing   |
+| Kamesh     | Salesman    |   9775 |                30 | Marketing   |
+| Aravind    | Salesman    |   9775 |                30 | Marketing   |
+| David      | CEO         |  28750 |                40 | Management  |
+| Elavarasan | Manager     |  20000 |                50 | Management  |
+| Kamali     | Technician  |  11000 |                60 | Maintanence |
+| Jarena     | Technician  |  11000 |                60 | Maintanence |
+| LL Rahul   | Lead        |  11000 |                70 | Management  |
+| Elavarasan | Salesman    |   1000 |                30 | Marketing   |
+| Arasan     | Clerk       |   2000 |                10 | Accountant  |
+| Prakash    | Analyst     |   3000 |                20 | IT          |
+| Hari       | AsstManager |  13000 |                50 | Management  |
++------------+-------------+--------+-------------------+-------------+
+18 rows in set (0.00 sec)
+
+2. Display the jos available in DALLAS.
+
+
+mysql> select d.vacancies, l.location from company_det as d right join company_loc as l on d.sno = l.sno;
++------------------+----------+
+| vacancies        | location |
++------------------+----------+
+| QA Testing       | DALLAS   |
+| Java Developer   | TEXAS    |
+| QA Python        | DALLAS   |
+| DotNet Developer | TEXAS    |
++------------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select d.vacancies, l.location from company_det as d right join company_loc as l on d.sno = l.sno where location='DALLAS';
++------------+----------+
+| vacancies  | location |
++------------+----------+
+| QA Testing | DALLAS   |
+| QA Python  | DALLAS   |
++------------+----------+
+2 rows in set (0.00 sec)
+
+3.Display the name,job,salary and the salary grade for each employee.
+
+mysql> select c.name, e.designation, e.salary, c.grade from candidate as c left join emp_det as e on c.empno = e.empno;
++------------+-------------+--------+-------+
+| name       | designation | salary | grade |
++------------+-------------+--------+-------+
+| Ashok      | Clerk       |  10350 | C     |
+| Subash     | Clerk       |  10350 | B     |
+| Bharathi   | Clerk       |  10350 | B     |
+| Saileh     | Analyst     |  12650 | A     |
+| Mithun     | Analyst     |  12650 | B     |
+| Prasanth   | Analyst     |  12650 | A     |
+| Sudharsan  | Salesman    |   9775 | A     |
+| Kamesh     | Salesman    |   9775 | A     |
+| Aravind    | Salesman    |   9775 | A     |
+| David      | CEO         |  28750 | S     |
+| Elavarasan | Manager     |  20000 | A     |
+| Kamali     | Technician  |  11000 | A     |
+| Jarena     | Technician  |  11000 | A     |
+| LL Rahul   | Lead        |  11000 | A     |
+| Elavarasan | Salesman    |   1000 | S     |
+| Arasan     | Clerk       |   2000 | A     |
+| Prakash    | Analyst     |   3000 | C     |
+| Hari       | AsstManager |  13000 | B     |
++------------+-------------+--------+-------+
+18 rows in set (0.00 sec)
+
+4. Display the dept name and no. of employees working in each dept.
+
+mysql> select c.name, e.department_number, e.status='Working' from candidate as c left join emp_det as e on c.empno = e.empno;
++------------+-------------------+--------------------+
+| name       | department_number | e.status='Working' |
++------------+-------------------+--------------------+
+| Ashok      |                10 |                  1 |
+| Subash     |                10 |                  1 |
+| Bharathi   |                10 |                  0 |
+| Saileh     |                20 |                  1 |
+| Mithun     |                20 |                  0 |
+| Prasanth   |                20 |                  1 |
+| Sudharsan  |                30 |                  1 |
+| Kamesh     |                30 |                  1 |
+| Aravind    |                30 |                  1 |
+| David      |                40 |                  1 |
+| Elavarasan |                50 |                  1 |
+| Kamali     |                60 |                  1 |
+| Jarena     |                60 |                  1 |
+| LL Rahul   |                70 |                  1 |
+| Elavarasan |                30 |                  1 |
+| Arasan     |                10 |                  1 |
+| Prakash    |                20 |                  1 |
+| Hari       |                50 |                  1 |
++------------+-------------------+--------------------+
+18 rows in set (0.00 sec)
+
+5. Display the empno,name,dept name,loc,grade of all employees.
+
+
+mysql> select e.empno, c.name, c.dep_name, c.job_location, c.grade from emp_det as e right join candidate as c on e.empno = c.empno where e.status='Working';
++-------+------------+-------------+--------------+-------+
+| empno | name       | dep_name    | job_location | grade |
++-------+------------+-------------+--------------+-------+
+| EMN01 | Ashok      | Accountant  | NY           | C     |
+| EMN02 | Subash     | Accountant  | TX           | B     |
+| EMN04 | Saileh     | IT          | Dallas       | A     |
+| EMN06 | Prasanth   | IT          | Canada       | A     |
+| EMN07 | Sudharsan  | Marketing   | TX           | A     |
+| EMN08 | Kamesh     | Marketing   | India        | A     |
+| EMN09 | Aravind    | Marketing   | Dallas       | A     |
+| EMN10 | David      | Management  | Mexico       | S     |
+| EMN11 | Elavarasan | Management  | Mexico       | A     |
+| EMN12 | Kamali     | Maintanence | TX           | A     |
+| EMN13 | Jarena     | Maintanence | India        | A     |
+| EMN14 | LL Rahul   | Management  | Dallas       | A     |
+| EMN15 | Elavarasan | Marketing   | Mexico       | S     |
+| EMN16 | Arasan     | Accountant  | TX           | A     |
+| EMN17 | Prakash    | IT          | NY           | C     |
+| EMN19 | Hari       | Management  | India        | B     |
++-------+------------+-------------+--------------+-------+
+16 rows in set (0.03 sec)
+
+6. Display the empno,name,deptno and the dept name for all employees. Include the depts which is not having any employees.
+mysql> select e.empno, c.name, e.department_number, c.dep_name from emp_det as e right join candidate as c on e.empno = c.empno;
++-------+------------+-------------------+-------------+
+| empno | name       | department_number | dep_name    |
++-------+------------+-------------------+-------------+
+| EMN01 | Ashok      |                10 | Accountant  |
+| EMN02 | Subash     |                10 | Accountant  |
+| EMN03 | Bharathi   |                10 | Accountant  |
+| EMN04 | Saileh     |                20 | IT          |
+| EMN05 | Mithun     |                20 | IT          |
+| EMN06 | Prasanth   |                20 | IT          |
+| EMN07 | Sudharsan  |                30 | Marketing   |
+| EMN08 | Kamesh     |                30 | Marketing   |
+| EMN09 | Aravind    |                30 | Marketing   |
+| EMN10 | David      |                40 | Management  |
+| EMN11 | Elavarasan |                50 | Management  |
+| EMN12 | Kamali     |                60 | Maintanence |
+| EMN13 | Jarena     |                60 | Maintanence |
+| EMN14 | LL Rahul   |                70 | Management  |
+| EMN15 | Elavarasan |                30 | Marketing   |
+| EMN16 | Arasan     |                10 | Accountant  |
+| EMN17 | Prakash    |                20 | IT          |
+| EMN19 | Hari       |                50 | Management  |
++-------+------------+-------------------+-------------+
+18 rows in set (0.00 sec)
+
+7. Display the deptno and dept name which is having no. employees.
+
+mysql> select e.department_number ,c.dep_name from emp_det as e inner join candidate as c on e.empno = c.empno where e.status='Vacant';
++-------------------+------------------+
+| department_number | dep_name         |
++-------------------+------------------+
+|                80 | Python Developer |
++-------------------+------------------+
+1 row in set (0.00 sec)
+
+8. Display the employee name and their manager's name for all employees.
+
+mysql> select c.name, e.reporting_person from candidate as c left join emp_det as e on c.empno = e.empno;
++------------+------------------+
+| name       | reporting_person |
++------------+------------------+
+| Ashok      | Elavarasan       |
+| Subash     | Elavarasan       |
+| Bharathi   | Elavarasan       |
+| Saileh     | Hari             |
+| Mithun     | Hari             |
+| Prasanth   | Hari             |
+| Sudharsan  | Elavarasan       |
+| Kamesh     | Elavarasan       |
+| Aravind    | Elavarasan       |
+| David      | NULL             |
+| Elavarasan | NULL             |
+| Kamali     | NULL             |
+| Jarena     | NULL             |
+| LL Rahul   | NULL             |
+| Elavarasan | Elavarasan       |
+| Arasan     | Elavarasan       |
+| Prakash    | Hari             |
+| Hari       | NULL             |
+| NULL       | NULL             |
++------------+------------------+
+19 rows in set (0.01 sec)
+
+9. Display the dept name which is having maximum employees.
+
+mysql> select c.dep_name, count(e.designation) from candidate as c right join emp_det as e on c.empno = e.empno where e.status='Working' group by c.dep_name;
++-------------+----------------------+
+| dep_name    | count(e.designation) |
++-------------+----------------------+
+| Accountant  |                    3 |
+| IT          |                    3 |
+| Marketing   |                    4 |
+| Management  |                    4 |
+| Maintanence |                    2 |
++-------------+----------------------+
+5 rows in set (0.00 sec)
+
+mysql> select c.dep_name, count(e.designation)>3 from candidate as c right join emp_det as e on c.empno = e.empno where e.status='Working' group by c.dep_name;
++-------------+------------------------+
+| dep_name    | count(e.designation)>3 |
++-------------+------------------------+
+| Accountant  |                      0 |
+| IT          |                      0 |
+| Marketing   |                      1 |
+| Management  |                      1 |
+| Maintanence |                      0 |
++-------------+------------------------+
+5 rows in set (0.00 sec)
+
+10.Write a query to find the empno, ename, job, deptno, dname and loc of all the employees. Include the departments which is having no employees and the employees who had not been allocated any dept.
+
+mysql> select e.empno, e.ename, e.designation,e.department_number, c.dep_name,c.job_location from emp_det as e inner join candidate as c on e.empno = c.empno;
++-------+------------+-------------+-------------------+------------------+--------------+
+| empno | ename      | designation | department_number | dep_name         | job_location |
++-------+------------+-------------+-------------------+------------------+--------------+
+| EMN01 | Ashok      | Clerk       |                10 | Accountant       | NY           |
+| EMN02 | Subash     | Clerk       |                10 | Accountant       | TX           |
+| EMN03 | Bharathi   | Clerk       |                10 | Accountant       | Dallas       |
+| EMN04 | Saileh     | Analyst     |                20 | IT               | Dallas       |
+| EMN05 | Mithun     | Analyst     |                20 | IT               | Mexico       |
+| EMN06 | Prasanth   | Analyst     |                20 | IT               | Canada       |
+| EMN07 | Sudharsan  | Salesman    |                30 | Marketing        | TX           |
+| EMN08 | Kamesh     | Salesman    |                30 | Marketing        | India        |
+| EMN09 | Aravind    | Salesman    |                30 | Marketing        | Dallas       |
+| EMN10 | David      | CEO         |                40 | Management       | Mexico       |
+| EMN11 | Elavarasan | Manager     |                50 | Management       | Mexico       |
+| EMN12 | Kamali     | Technician  |                60 | Maintanence      | TX           |
+| EMN13 | Jarena     | Technician  |                60 | Maintanence      | India        |
+| EMN14 | LL Rahul   | Lead        |                70 | Management       | Dallas       |
+| EMN15 | Elavarasan | Salesman    |                30 | Marketing        | Mexico       |
+| EMN16 | Arasan     | Clerk       |                10 | Accountant       | TX           |
+| EMN17 | Prakash    | Analyst     |                20 | IT               | NY           |
+| EMN19 | Hari       | AsstManager |                50 | Management       | India        |
+| EMN20 | NULL       | Developer   |                80 | Python Developer | NULL         |
++-------+------------+-------------+-------------------+------------------+--------------+
+19 rows in set (0.00 sec)
+
+
+
+
+

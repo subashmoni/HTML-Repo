@@ -1,0 +1,237 @@
+1. Get all the details of products that belong to clothing category and price less than 700.
+
+mysql> create table product_del(pid int primary key, pname varchar(20), category varchar(20), qty int, price int);
+Query OK, 0 rows affected (1.52 sec)
+
+mysql> insert into product_del values(101, jeans, clothing, 3, 300);
+ERROR 1054 (42S22): Unknown column 'jeans' in 'field list'
+mysql> insert into product_del values(101, 'jeans', 'clothing', 3, 300);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into product_del values(102, 'shirt', 'clothing', 3, 600);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into product_del values(102, 'shirt', 'silk', 3, 600);
+ERROR 1062 (23000): Duplicate entry '102' for key 'product_del.PRIMARY'
+mysql> insert into product_del values(103, 'shirt', 'silk', 3, 600);
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into product_del values(104, 'pant', 'silk', 3, 600);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> select * from product_del;
++-----+-------+----------+------+-------+
+| pid | pname | category | qty  | price |
++-----+-------+----------+------+-------+
+| 101 | jeans | clothing |    3 |   300 |
+| 102 | shirt | clothing |    3 |   600 |
+| 103 | shirt | silk     |    3 |   600 |
+| 104 | pant  | silk     |    3 |   600 |
++-----+-------+----------+------+-------+
+4 rows in set (0.07 sec)
+
+mysql> select * from product_del where category='clothing' and price<700;
++-----+-------+----------+------+-------+
+| pid | pname | category | qty  | price |
++-----+-------+----------+------+-------+
+| 101 | jeans | clothing |    3 |   300 |
+| 102 | shirt | clothing |    3 |   600 |
++-----+-------+----------+------+-------+
+2. Get all the details of products that belong to denim brand with rating greater than 4.
+
+mysql> select * from product_del where brand='denim' and rating>4;
++-----+-------+----------+------+-------+-------+--------+
+| pid | pname | category | qty  | price | brand | rating |
++-----+-------+----------+------+-------+-------+--------+
+| 102 | shirt | clothing |    3 |   600 | denim |      5 |
+| 103 | shirt | silk     |    3 |   600 | denim |      5 |
++-----+-------+----------+------+-------+-------+--------+
+
+
+3. Get all the best-rating products with price less than or equal to 1000.
+
+
+mysql> select * from product_del;
++-----+-------+----------+------+-------+-------+--------+
+| pid | pname | category | qty  | price | brand | rating |
++-----+-------+----------+------+-------+-------+--------+
+| 101 | jeans | clothing |    3 |   300 | lee   |      3 |
+| 102 | shirt | clothing |    3 |   600 | denim |      5 |
+| 103 | shirt | silk     |    3 |   600 | denim |      5 |
+| 104 | pant  | silk     |    3 |   600 | lou   |      2 |
+| 105 | shirt | clothing |    4 |   800 | lee   |      6 |
+| 106 | pant  | clothing |    4 |  1100 | lee   |      5 |
++-----+-------+----------+------+-------+-------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select rating, price from product_del where rating>4 and price<=1000;
++--------+-------+
+| rating | price |
++--------+-------+
+|      5 |   600 |
+|      5 |   600 |
+|      6 |   800 |
++--------+-------+
+
+4. get all the products from the product table whose
+    
+    rating is above 3.6 and price is less than 100 and belongs to puma brand
+
+mysql> select * from product_del;
++-----+-------+----------+------+-------+-------+--------+
+| pid | pname | category | qty  | price | brand | rating |
++-----+-------+----------+------+-------+-------+--------+
+| 101 | jeans | clothing |    3 |   300 | lee   |      3 |
+| 102 | shirt | clothing |    3 |   600 | denim |      5 |
+| 103 | shirt | silk     |    3 |   600 | denim |      5 |
+| 104 | pant  | silk     |    3 |   600 | lou   |      2 |
+| 105 | shirt | clothing |    4 |   800 | lee   |      6 |
+| 106 | pant  | clothing |    4 |  1100 | lee   |      5 |
+| 107 | pant  | clothing |    4 |   900 | puma  |      5 |
+| 108 | shirt | clothing |    4 |  1000 | puma  |      5 |
++-----+-------+----------+------+-------+-------+--------+
+8 rows in set (0.00 sec)
+
+mysql> select * from product_del where rating<3.6 and price<1000 and brand='puma';
+Empty set (0.33 sec)
+
+mysql> select * from product_del where rating>3.6 and price<1000 and brand='puma';
++-----+-------+----------+------+-------+-------+--------+
+| pid | pname | category | qty  | price | brand | rating |
++-----+-------+----------+------+-------+-------+--------+
+| 107 | pant  | clothing |    4 |   900 | puma  |      5 |
++-----+-------+----------+------+-------+-------+--------+
+
+
+5. Get all the products from puma, denim or nike brands
+
+mysql> select * from product_del where brand='puma'and brand='denim' or brand='nike';
++-----+-------+----------+------+-------+-------+--------+
+| pid | pname | category | qty  | price | brand | rating |
++-----+-------+----------+------+-------+-------+--------+
+| 109 | shall | clothing |    4 |  1000 | nike  |      5 |
+| 110 | shirt | clothing |    4 |  1000 | nike  |      5 |
++-----+-------+----------+------+-------+-------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from product_del where brand='puma'or brand='denim' or brand='nike';
++-----+-------+----------+------+-------+-------+--------+
+| pid | pname | category | qty  | price | brand | rating |
++-----+-------+----------+------+-------+-------+--------+
+| 102 | shirt | clothing |    3 |   600 | denim |      5 |
+| 103 | shirt | silk     |    3 |   600 | denim |      5 |
+| 107 | pant  | clothing |    4 |   900 | puma  |      5 |
+| 108 | shirt | clothing |    4 |  1000 | puma  |      5 |
+| 109 | shall | clothing |    4 |  1000 | nike  |      5 |
+| 110 | shirt | clothing |    4 |  1000 | nike  |      5 |
+
+
+6. get all the details of produce whose
+     brand is redmi with rating greater than 4 or
+       product that belong to oneplus brand.
+
+
+mysql> select * from product_del;
++-----+-----------+----------+------+-------+-----------+--------+
+| pid | pname     | category | qty  | price | brand     | rating |
++-----+-----------+----------+------+-------+-----------+--------+
+| 101 | jeans     | clothing |    3 |   300 | lee       |      3 |
+| 102 | shirt     | clothing |    3 |   600 | denim     |      5 |
+| 103 | shirt     | silk     |    3 |   600 | denim     |      5 |
+| 104 | pant      | silk     |    3 |   600 | lou       |      2 |
+| 105 | shirt     | clothing |    4 |   800 | lee       |      6 |
+| 106 | pant      | clothing |    4 |  1100 | lee       |      5 |
+| 107 | pant      | clothing |    4 |   900 | puma      |      5 |
+| 108 | shirt     | clothing |    4 |  1000 | puma      |      5 |
+| 109 | shall     | clothing |    4 |  1000 | nike      |      5 |
+| 110 | shirt     | clothing |    4 |  1000 | nike      |      5 |
+| 111 | redmia55  | phone    |    2 | 15000 | redmi     |      4 |
+| 112 | redimpro  | phone    |    2 | 15000 | redmi     |      3 |
+| 113 | redimpro1 | phone    |    2 | 15000 | redmi     |      5 |
+| 114 | redimpro1 | phone    |    2 | 15000 | oneplus   |      5 |
+| 115 | cake      | cakes    |    2 |   300 | cadbury   |      5 |
+| 116 | cake      | cakes    |    2 |   300 | britannia |      3 |
+| 117 | cake      | cakes    |    2 |   300 | britannia |      5 |
++-----+-----------+----------+------+-------+-----------+--------+
+17 rows in set (0.00 sec)
+
+mysql> select * from product_del where brand='cadbury' and brand='britannia';
+Empty set (0.00 sec)
+
+mysql> select * from product_del where brand in britannia;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'britannia' at line 1
+mysql> select * from product_del where brand='cadbury' brand='britannia' and rating>4.0;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'brand='britannia' and rating>4.0' at line 1
+mysql> select * from product_del where brand='cadbury' or  brand='britannia' and rating>4.0;
++-----+-------+----------+------+-------+-----------+--------+
+| pid | pname | category | qty  | price | brand     | rating |
++-----+-------+----------+------+-------+-----------+--------+
+| 115 | cake  | cakes    |    2 |   300 | cadbury   |      5 |
+| 117 | cake  | cakes    |    2 |   300 | britannia |      5 |
++-----+-------+----------+------+-------+-----------+--------+
+
+
+
+8. get all the details of products from the product table whose 
+      brand is puma and rating greater than 3.5 or
+      brand is denim and rating greater than 4.0.
+
+
+mysql> select * from product_del where brand='puma' and rating>3.5 or brand='denim' and rating>4.0;
++-----+-------+----------+------+-------+-------+--------+
+| pid | pname | category | qty  | price | brand | rating |
++-----+-------+----------+------+-------+-------+--------+
+| 102 | shirt | clothing |    3 |   600 | denim |      5 |
+| 103 | shirt | silk     |    3 |   600 | denim |      5 |
+| 107 | pant  | clothing |    4 |   900 | puma  |      5 |
+| 108 | shirt | clothing |    4 |  1000 | puma  |      5 |
++-----+-------+----------+------+-------+-------+--------+
+
+
+9. get all the shirts available in puma , nike or levi brands , excluding the black colour shirts.
+
+
+mysql> select * from product_del;
++-----+------------+----------+------+-------+-----------+--------+
+| pid | pname      | category | qty  | price | brand     | rating |
++-----+------------+----------+------+-------+-----------+--------+
+| 101 | jeans      | clothing |    3 |   300 | lee       |      3 |
+| 102 | blackshirt | clothing |    3 |   600 | denim     |      5 |
+| 103 | blackshirt | silk     |    3 |   600 | denim     |      5 |
+| 104 | pant       | silk     |    3 |   600 | lou       |      2 |
+| 105 | shirt      | clothing |    4 |   800 | lee       |      6 |
+| 106 | pant       | clothing |    4 |  1100 | lee       |      5 |
+| 107 | pant       | clothing |    4 |   900 | puma      |      5 |
+| 108 | shirt      | clothing |    4 |  1000 | puma      |      5 |
+| 109 | shall      | clothing |    4 |  1000 | nike      |      5 |
+| 110 | shirt      | clothing |    4 |  1000 | nike      |      5 |
+| 111 | redmia55   | phone    |    2 | 15000 | redmi     |      4 |
+| 112 | redimpro   | phone    |    2 | 15000 | redmi     |      3 |
+| 113 | redimpro1  | phone    |    2 | 15000 | redmi     |      5 |
+| 114 | redimpro1  | phone    |    2 | 15000 | oneplus   |      5 |
+| 115 | cake       | cakes    |    2 |   300 | cadbury   |      5 |
+| 116 | cake       | cakes    |    2 |   300 | britannia |      3 |
+| 117 | cake       | cakes    |    2 |   300 | britannia |      5 |
++-----+------------+----------+------+-------+-----------+--------+
+17 rows in set (0.00 sec)
+
+mysql> select pname from product_del where not pname='blackshirt' or brand='puma' or brand='nike' or brand='levi';
++-----------+
+| pname     |
++-----------+
+| jeans     |
+| pant      |
+| shirt     |
+| pant      |
+| pant      |
+| shirt     |
+| shall     |
+| shirt     |
+| redmia55  |
+| redimpro  |
+| redimpro1 |
+| redimpro1 |
+| cake      |
+| cake      |
+| cake      |
++-----------+

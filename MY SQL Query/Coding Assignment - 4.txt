@@ -1,0 +1,397 @@
+1. Display the total number of employees working in the company
+
+mysql> update emp_det set Status='Working' where empno='EMN01';
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update emp_det set Status='Working' where empno in('EMN02','EMN04','EMN06');
+Query OK, 3 rows affected (0.06 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select * from emp_det;
++-------------------+-------+------------+-------------+--------+------------+---------+
+| department_number | empno | ename      | designation | salary | doj        | Status  |
++-------------------+-------+------------+-------------+--------+------------+---------+
+|                10 | EMN01 | Ashok      | Clerk       |  10350 | 1981-01-12 | Working |
+|                10 | EMN02 | Subash     | Clerk       |  10350 | 1981-01-15 | Working |
+|                10 | EMN03 | Bharathi   | Clerk       |  10350 | 1981-02-02 | NULL    |
+|                20 | EMN04 | Saileh     | Analyst     |  12650 | 1981-02-12 | Working |
+|                20 | EMN05 | Mithun     | Analyst     |  12650 | 1981-01-15 | NULL    |
+|                20 | EMN06 | Prasanth   | Analyst     |  12650 | 1981-01-15 | Working |
+|                30 | EMN07 | Sudharsan  | Salesman    |   9775 | 1981-01-10 | NULL    |
+|                30 | EMN08 | Kamesh     | Salesman    |   9775 | 1981-02-10 | NULL    |
+|                30 | EMN09 | Aravind    | Salesman    |   9775 | 1981-02-14 | NULL    |
+|                40 | EMN10 | David      | CEO         |  28750 | 1980-12-31 | NULL    |
+|                50 | EMN11 | Elavarasan | Manager     |  20000 | 1980-12-21 | NULL    |
+|                60 | EMN12 | Kamali     | Technician  |  11000 | 1981-05-06 | NULL    |
+|                60 | EMN13 | Jarena     | Technician  |  11000 | 1981-04-10 | NULL    |
+|                70 | EMN14 | LL Rahul   | Lead        |  11000 | 1981-07-03 | NULL    |
++-------------------+-------+------------+-------------+--------+------------+---------+
+14 rows in set (0.00 sec)
+
+mysql> update emp_det set Status='Working' where empno in('EMN07','EMN08','EMN09','EMN10','EMN11','EMN12','EMN13','EMN14');
+Query OK, 8 rows affected (0.06 sec)
+Rows matched: 8  Changed: 8  Warnings: 0
+
+mysql> select * from emp_det;
++-------------------+-------+------------+-------------+--------+------------+---------+
+| department_number | empno | ename      | designation | salary | doj        | Status  |
++-------------------+-------+------------+-------------+--------+------------+---------+
+|                10 | EMN01 | Ashok      | Clerk       |  10350 | 1981-01-12 | Working |
+|                10 | EMN02 | Subash     | Clerk       |  10350 | 1981-01-15 | Working |
+|                10 | EMN03 | Bharathi   | Clerk       |  10350 | 1981-02-02 | NULL    |
+|                20 | EMN04 | Saileh     | Analyst     |  12650 | 1981-02-12 | Working |
+|                20 | EMN05 | Mithun     | Analyst     |  12650 | 1981-01-15 | NULL    |
+|                20 | EMN06 | Prasanth   | Analyst     |  12650 | 1981-01-15 | Working |
+|                30 | EMN07 | Sudharsan  | Salesman    |   9775 | 1981-01-10 | Working |
+|                30 | EMN08 | Kamesh     | Salesman    |   9775 | 1981-02-10 | Working |
+|                30 | EMN09 | Aravind    | Salesman    |   9775 | 1981-02-14 | Working |
+|                40 | EMN10 | David      | CEO         |  28750 | 1980-12-31 | Working |
+|                50 | EMN11 | Elavarasan | Manager     |  20000 | 1980-12-21 | Working |
+|                60 | EMN12 | Kamali     | Technician  |  11000 | 1981-05-06 | Working |
+|                60 | EMN13 | Jarena     | Technician  |  11000 | 1981-04-10 | Working |
+|                70 | EMN14 | LL Rahul   | Lead        |  11000 | 1981-07-03 | Working |
++-------------------+-------+------------+-------------+--------+------------+---------+
+14 rows in set (0.00 sec)
+
+mysql> update emp_det set Status='Releaved' where empno in('EMN03','EMN05');
+Query OK, 2 rows affected (0.03 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from emp_det;
++-------------------+-------+------------+-------------+--------+------------+----------+
+| department_number | empno | ename      | designation | salary | doj        | Status   |
++-------------------+-------+------------+-------------+--------+------------+----------+
+|                10 | EMN01 | Ashok      | Clerk       |  10350 | 1981-01-12 | Working  |
+|                10 | EMN02 | Subash     | Clerk       |  10350 | 1981-01-15 | Working  |
+|                10 | EMN03 | Bharathi   | Clerk       |  10350 | 1981-02-02 | Releaved |
+|                20 | EMN04 | Saileh     | Analyst     |  12650 | 1981-02-12 | Working  |
+|                20 | EMN05 | Mithun     | Analyst     |  12650 | 1981-01-15 | Releaved |
+|                20 | EMN06 | Prasanth   | Analyst     |  12650 | 1981-01-15 | Working  |
+|                30 | EMN07 | Sudharsan  | Salesman    |   9775 | 1981-01-10 | Working  |
+|                30 | EMN08 | Kamesh     | Salesman    |   9775 | 1981-02-10 | Working  |
+|                30 | EMN09 | Aravind    | Salesman    |   9775 | 1981-02-14 | Working  |
+|                40 | EMN10 | David      | CEO         |  28750 | 1980-12-31 | Working  |
+|                50 | EMN11 | Elavarasan | Manager     |  20000 | 1980-12-21 | Working  |
+|                60 | EMN12 | Kamali     | Technician  |  11000 | 1981-05-06 | Working  |
+|                60 | EMN13 | Jarena     | Technician  |  11000 | 1981-04-10 | Working  |
+|                70 | EMN14 | LL Rahul   | Lead        |  11000 | 1981-07-03 | Working  |
++-------------------+-------+------------+-------------+--------+------------+----------+
+14 rows in set (0.00 sec)
+
+mysql> select ename,Status from emp_det where Status='Working';
++------------+---------+
+| ename      | Status  |
++------------+---------+
+| Ashok      | Working |
+| Subash     | Working |
+| Saileh     | Working |
+| Prasanth   | Working |
+| Sudharsan  | Working |
+| Kamesh     | Working |
+| Aravind    | Working |
+| David      | Working |
+| Elavarasan | Working |
+| Kamali     | Working |
+| Jarena     | Working |
+| LL Rahul   | Working |
++------------+---------+
+12 rows in set (0.00 sec)
+
+2. Display the total salary and total commission to all employees
+
+mysql> update emp_det set Commisson=100.50 where empno between 'EMN01' and 'EMN14';
+Query OK, 14 rows affected (0.04 sec)
+Rows matched: 14  Changed: 14  Warnings: 0
+
+mysql> select * from emp_det;
++-------------------+-------+------------+-------------+--------+-----------+------------+----------+
+| department_number | empno | ename      | designation | salary | Commisson | doj        | Status   |
++-------------------+-------+------------+-------------+--------+-----------+------------+----------+
+|                10 | EMN01 | Ashok      | Clerk       |  10350 |    100.50 | 1981-01-12 | Working  |
+|                10 | EMN02 | Subash     | Clerk       |  10350 |    100.50 | 1981-01-15 | Working  |
+|                10 | EMN03 | Bharathi   | Clerk       |  10350 |    100.50 | 1981-02-02 | Releaved |
+|                20 | EMN04 | Saileh     | Analyst     |  12650 |    100.50 | 1981-02-12 | Working  |
+|                20 | EMN05 | Mithun     | Analyst     |  12650 |    100.50 | 1981-01-15 | Releaved |
+|                20 | EMN06 | Prasanth   | Analyst     |  12650 |    100.50 | 1981-01-15 | Working  |
+|                30 | EMN07 | Sudharsan  | Salesman    |   9775 |    100.50 | 1981-01-10 | Working  |
+|                30 | EMN08 | Kamesh     | Salesman    |   9775 |    100.50 | 1981-02-10 | Working  |
+|                30 | EMN09 | Aravind    | Salesman    |   9775 |    100.50 | 1981-02-14 | Working  |
+|                40 | EMN10 | David      | CEO         |  28750 |    100.50 | 1980-12-31 | Working  |
+|                50 | EMN11 | Elavarasan | Manager     |  20000 |    100.50 | 1980-12-21 | Working  |
+|                60 | EMN12 | Kamali     | Technician  |  11000 |    100.50 | 1981-05-06 | Working  |
+|                60 | EMN13 | Jarena     | Technician  |  11000 |    100.50 | 1981-04-10 | Working  |
+|                70 | EMN14 | LL Rahul   | Lead        |  11000 |    100.50 | 1981-07-03 | Working  |
++-------------------+-------+------------+-------------+--------+-----------+------------+----------+
+14 rows in set (0.00 sec)
+
+mysql> alter table emp_det add total_salary double after Commisson;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update emp_det set total_salary=salary+Commisson where department_number between 10 and 70;
+Query OK, 14 rows affected (0.03 sec)
+Rows matched: 14  Changed: 14  Warnings: 0
+
+mysql> select * from emp_det;
++-------------------+-------+------------+-------------+--------+-----------+--------------+------------+----------+
+| department_number | empno | ename      | designation | salary | Commisson | total_salary | doj        | Status   |
++-------------------+-------+------------+-------------+--------+-----------+--------------+------------+----------+
+|                10 | EMN01 | Ashok      | Clerk       |  10350 |    100.50 |      10450.5 | 1981-01-12 | Working  |
+|                10 | EMN02 | Subash     | Clerk       |  10350 |    100.50 |      10450.5 | 1981-01-15 | Working  |
+|                10 | EMN03 | Bharathi   | Clerk       |  10350 |    100.50 |      10450.5 | 1981-02-02 | Releaved |
+|                20 | EMN04 | Saileh     | Analyst     |  12650 |    100.50 |      12750.5 | 1981-02-12 | Working  |
+|                20 | EMN05 | Mithun     | Analyst     |  12650 |    100.50 |      12750.5 | 1981-01-15 | Releaved |
+|                20 | EMN06 | Prasanth   | Analyst     |  12650 |    100.50 |      12750.5 | 1981-01-15 | Working  |
+|                30 | EMN07 | Sudharsan  | Salesman    |   9775 |    100.50 |       9875.5 | 1981-01-10 | Working  |
+|                30 | EMN08 | Kamesh     | Salesman    |   9775 |    100.50 |       9875.5 | 1981-02-10 | Working  |
+|                30 | EMN09 | Aravind    | Salesman    |   9775 |    100.50 |       9875.5 | 1981-02-14 | Working  |
+|                40 | EMN10 | David      | CEO         |  28750 |    100.50 |      28850.5 | 1980-12-31 | Working  |
+|                50 | EMN11 | Elavarasan | Manager     |  20000 |    100.50 |      20100.5 | 1980-12-21 | Working  |
+|                60 | EMN12 | Kamali     | Technician  |  11000 |    100.50 |      11100.5 | 1981-05-06 | Working  |
+|                60 | EMN13 | Jarena     | Technician  |  11000 |    100.50 |      11100.5 | 1981-04-10 | Working  |
+|                70 | EMN14 | LL Rahul   | Lead        |  11000 |    100.50 |      11100.5 | 1981-07-03 | Working  |
++-------------------+-------+------------+-------------+--------+-----------+--------------+------------+----------+
+14 rows in set (0.00 sec)
+
+3. Display the maximum salary from emp table.
+mysql> select max(salary) from emp_det;
++-------------+
+| max(salary) |
++-------------+
+|       28750 |
++-------------+
+1 row in set (0.00 sec)
+
+4.Display the hiredate of junior most employee.
+
+mysql> select ename, doj from emp_det where doj between '1981-07-01' and '1981-07-31';
++----------+------------+
+| ename    | doj        |
++----------+------------+
+| LL Rahul | 1981-07-03 |
++----------+------------+
+1 row in set (0.01 sec)
+
+5.Display the average salary from emp table.
+
+mysql> select avg(salary) as average_salary from emp_det;
++----------------+
+| average_salary |
++----------------+
+|     12862.5000 |
++----------------+
+1 row in set (0.00 sec)
+
+6.Display the maximum salary being paid to CLERK.
+
+mysql> select department_number, designation, max(salary) from emp_det where department_number=10 group by designation;
++-------------------+-------------+-------------+
+| department_number | designation | max(salary) |
++-------------------+-------------+-------------+
+|                10 | Clerk       |       10350 |
++-------------------+-------------+-------------+
+1 row in set (0.04 sec)
+
+7.Display the maximum salary being paid in dept no 20.
+
+mysql> select department_number, max(salary) from emp_det where department_number=20;
++-------------------+-------------+
+| department_number | max(salary) |
++-------------------+-------------+
+|                20 |       12650 |
++-------------------+-------------+
+1 row in set (0.00 sec)
+
+8.Display the minimum salary being paid to any SALESMAN.
+
+mysql> select designation, min(salary) from emp_det where department_number=30 group by designation;
++-------------+-------------+
+| designation | min(salary) |
++-------------+-------------+
+| Salesman    |        1000 |
++-------------+-------------+
+1 row in set (0.00 sec)
+
+9.Display the average salary drawn by managers.
+
+mysql> select designation, avg(salary) from emp_det where designation='Manager';
++-------------+-------------+
+| designation | avg(salary) |
++-------------+-------------+
+| Manager     |  20000.0000 |
++-------------+-------------+
+1 row in set (0.00 sec)
+
+10.Display the total salary drawn by analyst working in dept no 20.
+
+mysql> select department_number, avg(total_salary) as average_20 from emp_det where department_number=20;
++-------------------+------------+
+| department_number | average_20 |
++-------------------+------------+
+|                20 |    12750.5 |
++-------------------+------------+
+1 row in set (0.00 sec)
+
+
+11. Display Department numbers and total number of employees working in each Department?
+
+mysql> select department_number, count(designation) from emp_det group by department_number;
++-------------------+--------------------+
+| department_number | count(designation) |
++-------------------+--------------------+
+|                10 |                  3 |
+|                20 |                  3 |
+|                30 |                  4 |
+|                40 |                  1 |
+|                50 |                  1 |
+|                60 |                  2 |
+|                70 |                  1 |
++-------------------+--------------------+
+7 rows in set (0.00 sec)
+
+12. Display the various jobs and total number of employees working in each job group?
+
+mysql> select designation, count(designation) from emp_det group by designation;
++-------------+--------------------+
+| designation | count(designation) |
++-------------+--------------------+
+| Clerk       |                  3 |
+| Analyst     |                  3 |
+| Salesman    |                  4 |
+| CEO         |                  1 |
+| Manager     |                  1 |
+| Technician  |                  2 |
+| Lead        |                  1 |
++-------------+--------------------+
+7 rows in set (0.00 sec)
+
+13.Display department numbers and Total Salary for each Department?
+mysql> select department_number, sum(total_salary) from emp_det group by department_number;
++-------------------+-------------------+
+| department_number | sum(total_salary) |
++-------------------+-------------------+
+|                10 |           31351.5 |
+|                20 |           38251.5 |
+|                30 |             30727 |
+|                40 |           28850.5 |
+|                50 |           20100.5 |
+|                60 |             22201 |
+|                70 |           11100.5 |
++-------------------+-------------------+
+7 rows in set (0.00 sec)
+
+
+14.Display department numbers and Maximum Salary from each Department?
+
+mysql> select department_number, max(total_salary) from emp_det group by department_number;
++-------------------+-------------------+
+| department_number | max(total_salary) |
++-------------------+-------------------+
+|                10 |           10450.5 |
+|                20 |           12750.5 |
+|                30 |            9875.5 |
+|                40 |           28850.5 |
+|                50 |           20100.5 |
+|                60 |           11100.5 |
+|                70 |           11100.5 |
++-------------------+-------------------+
+7 rows in set (0.00 sec)
+
+15.Display various jobs and Total Salary for each job?
+
+mysql> select designation, sum(total_salary) from emp_det group by designation;
++-------------+-------------------+
+| designation | sum(total_salary) |
++-------------+-------------------+
+| Clerk       |           31351.5 |
+| Analyst     |           38251.5 |
+| Salesman    |             30727 |
+| CEO         |           28850.5 |
+| Manager     |           20100.5 |
+| Technician  |             22201 |
+| Lead        |           11100.5 |
++-------------+-------------------+
+7 rows in set (0.00 sec)
+
+16.Display each job along with min of salary being paid in each job group?
+
+mysql> select designation, min(total_salary) from emp_det group by designation;
++-------------+-------------------+
+| designation | min(total_salary) |
++-------------+-------------------+
+| Clerk       |           10450.5 |
+| Analyst     |           12750.5 |
+| Salesman    |            1100.5 |
+| CEO         |           28850.5 |
+| Manager     |           20100.5 |
+| Technician  |           11100.5 |
+| Lead        |           11100.5 |
++-------------+-------------------+
+7 rows in set (0.00 sec)
+
+17. Display the department Number with more than three employees in each department?
+
+mysql> select department_number, ename from emp_det where department_number between 10 and 30;
++-------------------+------------+
+| department_number | ename      |
++-------------------+------------+
+|                10 | Ashok      |
+|                10 | Subash     |
+|                10 | Bharathi   |
+|                20 | Saileh     |
+|                20 | Mithun     |
+|                20 | Prasanth   |
+|                30 | Sudharsan  |
+|                30 | Kamesh     |
+|                30 | Aravind    |
+|                30 | Elavarasan |
+|                10 | Arasan     |
+|                20 | Prakash    |
++-------------------+------------+
+12 rows in set (0.00 sec)
+
+18. Display various jobs along with total salary for each of the job where total salary is greater than 2500?
+mysql> select designation, total_salary>2500 from emp_det;
++-------------+-------------------+
+| designation | total_salary>2500 |
++-------------+-------------------+
+| Clerk       |                 1 |
+| Clerk       |                 1 |
+| Clerk       |                 1 |
+| Analyst     |                 1 |
+| Analyst     |                 1 |
+| Analyst     |                 1 |
+| Salesman    |                 1 |
+| Salesman    |                 1 |
+| Salesman    |                 1 |
+| CEO         |                 1 |
+| Manager     |                 1 |
+| Technician  |                 1 |
+| Technician  |                 1 |
+| Lead        |                 1 |
+| Salesman    |                 0 |
+| Clerk       |                 0 |
+| Analyst     |                 1 |
+| AsstManager |                 1 |
++-------------+-------------------+
+18 rows in set (0.00 sec)
+
+19. Display the various jobs along with total number of employees in each job.The output should contain only those jobs with more than three employees?
+
+mysql> select designation, count(designation)>3 from emp_det where department_number between 10 and 70 group by designation;
++-------------+----------------------+
+| designation | count(designation)>3 |
++-------------+----------------------+
+| Clerk       |                    1 |
+| Analyst     |                    1 |
+| Salesman    |                    1 |
+| CEO         |                    0 |
+| Manager     |                    0 |
+| Technician  |                    0 |
+| Lead        |                    0 |
+| AsstManager |                    0 |
++-------------+----------------------+
+8 rows in set (0.00 sec)
+
+

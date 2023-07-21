@@ -1,0 +1,202 @@
+moodle 2
+1. A new player has joined the tournament. Write an SQL query to add the following details to the player table.
+
+mysql> select * from players;
++------------+------+-------+
+| name       | age  | score |
++------------+------+-------+
+| Suresh     |   21 |    70 |
+| Venkat     |   21 |    43 |
+| Elavarasan |   22 |   101 |
++------------+------+-------+
+3 rows in set (0.00 sec)
+
+mysql> truncate table players;
+Query OK, 0 rows affected (0.21 sec)
+
+mysql> select * from players;
+Empty set (0.00 sec)
+
+mysql> insert into players(name, age, score)values('Raj', 26, 120);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from players;
++------+------+-------+
+| name | age  | score |
++------+------+-------+
+| Raj  |   26 |   120 |
++------+------+-------+
+1 row in set (0.00 sec)
+
+
+2.Three new players have joined the tournament.
+Write a SQL query to add the the following details of players to the player table. 
+
+mysql> update players set score=125 where name='Raj';
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update players set age=28 where name='Raj';
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> insert into players(name, age, score)values('Charan', 25, 173),('Ravan', 20, 152);
+Query OK, 2 rows affected (0.07 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from players;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Raj    |   28 |   125 |
+| Charan |   25 |   173 |
+| Ravan  |   20 |   152 |
++--------+------+-------+
+3 rows in set (0.00 sec)
+
+
+3. Get all the details of the players from the player table.
+Expected Output Format:
+
+
+mysql> truncate table players;
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> select * from players;
+Empty set (0.00 sec)
+
+mysql> insert into players(name, age, score)values('Ram', 24, 10),('Suresh', 21, 9);
+Query OK, 2 rows affected (0.04 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from players;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Ram    |   24 |    10 |
+| Suresh |   21 |     9 |
++--------+------+-------+
+2 rows in set (0.00 sec)
+
+
+4. Update the age of "Shyam" to 30 in the player table.
+Note.We can uniquely identify a player by name.
+
+mysql> insert into players(name, age, score)values('Shyam', 25, 123),('David', 22, 102);
+Query OK, 2 rows affected (0.04 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from players;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Ram    |   24 |    10 |
+| Suresh |   21 |     9 |
+| Shyam  |   25 |   123 |
+| David  |   22 |   102 |
++--------+------+-------+
+4 rows in set (0.00 sec)
+
+mysql> update players set age=30 where name='Shyam';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+5. Delete player "David" from the players table.
+Note. We can uniquely identify a player by name. 
+
+
+mysql> delete from players where name='David';
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from players;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Ram    |   24 |    10 |
+| Suresh |   21 |     9 |
+| Shyam  |   30 |   123 |
++--------+------+-------+
+3 rows in set (0.00 sec)
+
+6. We have to store strike_rate of players in the database. Make necessary 
+changes to the existing player table to store the data.
+Note.Name the column as strike_rate.It is measured in decimals
+
+mysql> alter table players add strike_rate int after score;
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc players;
++-------------+----------+------+-----+---------+-------+
+| Field       | Type     | Null | Key | Default | Extra |
++-------------+----------+------+-----+---------+-------+
+| name        | char(10) | YES  |     | NULL    |       |
+| age         | int      | YES  |     | NULL    |       |
+| score       | int      | YES  |     | NULL    |       |
+| strike_rate | int      | YES  |     | NULL    |       |
++-------------+----------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table players modify strike_rate float;
+Query OK, 3 rows affected (0.29 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> desc players;
++-------------+----------+------+-----+---------+-------+
+| Field       | Type     | Null | Key | Default | Extra |
++-------------+----------+------+-----+---------+-------+
+| name        | char(10) | YES  |     | NULL    |       |
+| age         | int      | YES  |     | NULL    |       |
+| score       | int      | YES  |     | NULL    |       |
+| strike_rate | float    | YES  |     | NULL    |       |
++-------------+----------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+7.Get name and age of all the players from the player table.
+
+
+
+mysql> select name, age from players;
++--------+------+
+| name   | age  |
++--------+------+
+| Ram    |   24 |
+| Suresh |   21 |
+| Shyam  |   30 |
++--------+------+
+3 rows in set (0.00 sec)
+
+
+8. Rename the column name to full_name in the player table
+
+mysql> alter table players change name full_name varchar(20);
+Query OK, 3 rows affected (0.26 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> desc players;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| full_name   | varchar(20) | YES  |     | NULL    |       |
+| age         | int         | YES  |     | NULL    |       |
+| score       | int         | YES  |     | NULL    |       |
+| strike_rate | float       | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+9.Delete players table from the database.
+
+mysql> drop table players;
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_sql_day1 |
++--------------------+
+| customer           |
+| order_details      |
+| player             |
+| student            |
++--------------------+
+4 rows in set (0.13 sec)

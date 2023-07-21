@@ -1,0 +1,114 @@
+1) Consider the following relations for a boat management application for a beach resort:
+
+Choose appropriate foreign keys and other constraints
+
+SAILOR (SID,NAME,DOB,GENDER)
+* name column must have a value
+
+mysql> create table salior(sid int primary key, name varchar(20) unique key, dob date, gender char(10));
+Query OK, 0 rows affected (0.79 sec)
+
+mysql> desc salior;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| sid    | int         | NO   | PRI | NULL    |       |
+| name   | varchar(20) | YES  | UNI | NULL    |       |
+| dob    | date        | YES  |     | NULL    |       |
+| gender | char(10)    | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+mysql> select * from salior;
++-----+-------------+------+--------+
+| sid | name        | dob  | gender |
++-----+-------------+------+--------+
+| 101 | Sudharsanan | NULL | NULL   |
+| 102 | Bose        | NULL | NULL   |
++-----+-------------+------+--------+
+2 rows in set (0.00 sec)
+
+
+BOAT (BID,BTYPE,BNAME,COLOR)
+** Boat name must be unique
+
+mysql> create table boat(bid int primary key, btype varchar(10), bname varchar(20) unique key, color char(10));
+Query OK, 0 rows affected (0.38 sec)
+
+mysql> desc boat;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| bid   | int         | NO   | PRI | NULL    |       |
+| btype | varchar(10) | YES  |     | NULL    |       |
+| bname | varchar(20) | YES  | UNI | NULL    |       |
+| color | char(10)    | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+2. BTYPE can take two values (D, S)
+
+D (Deluxe) S (Super Deluxe)
+
+mysql> insert into boat(bid, btype) values(101,'D_(Deluxe)'),(102,'S_(Sp_Dxe)');
+Query OK, 2 rows affected (0.05 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from boat;
++-----+------------+-------+-------+
+| bid | btype      | bname | color |
++-----+------------+-------+-------+
+| 101 | D_(Deluxe) | NULL  | NULL  |
+| 102 | S_(Sp_Dxe) | NULL  | NULL  |
++-----+------------+-------+-------+
+2 rows in set (0.00 sec)
+
+3. SAILS (SID, BID, DOT, SHIFT)
+
+DOT (Date of Trip)
+SHIFT can take two values (FN or AN)
+
+
+mysql> create table sails(sid int primary key, dot date, shift time, bid int, foreign key(bid) references boat(bid));
+Query OK, 0 rows affected (0.20 sec)
+
+mysql> desc sails;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| sid   | int  | NO   | PRI | NULL    |       |
+| dot   | date | YES  |     | NULL    |       |
+| shift | time | YES  |     | NULL    |       |
+| bid   | int  | YES  | MUL | NULL    |       |
++-------+------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> alter table sails change shift shift char(10);
+Query OK, 1 row affected (0.95 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> update sails set shift='PM';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from sails;
++-----+---------------------+-------+------+
+| sid | dot                 | shift | bid  |
++-----+---------------------+-------+------+
+|  11 | 2023-07-10 04:35:00 | PM    |  101 |
++-----+---------------------+-------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into sails values(12,'2023-7-10 08:30:00', 'AM', 102);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from sails;
++-----+---------------------+-------+------+
+| sid | dot                 | shift | bid  |
++-----+---------------------+-------+------+
+|  11 | 2023-07-10 04:35:00 | PM    |  101 |
+|  12 | 2023-07-10 08:30:00 | AM    |  102 |
++-----+---------------------+-------+------+
+2 rows in set (0.00 sec)
+

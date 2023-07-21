@@ -1,0 +1,162 @@
+moodle 1 
+1. Create a student table to store name,age and score of students.
+
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 23
+Server version: 8.0.33 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database moodle1;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| moodle1            |
+| mysql              |
+| performance_schema |
+| pradb              |
+| prasanthdb         |
+| prasanthkvpdb      |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.01 sec)
+
+mysql> use moodle1;
+Database changed
+mysql> create table student(name char(200),age int,score int);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> desc student;
++-------+-----------+------+-----+---------+-------+
+| Field | Type      | Null | Key | Default | Extra |
++-------+-----------+------+-----+---------+-------+
+| name  | char(200) | YES  |     | NULL    |       |
+| age   | int       | YES  |     | NULL    |       |
+| score | int       | YES  |     | NULL    |       |
++-------+-----------+------+-----+---------+-------+
+3 rows in set (0.04 sec)
+
+mysql>
+
+2. In a typical e-commerce application,we need to store the following customer details.Create a customer
+table to store the data?
+mysql> create table customer(customer_id int,first_name char(200),last_name char(200),date_of_birth date,address varchar(200),phone_number int);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc customer;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| customer_id   | int          | YES  |     | NULL    |       |
+| first_name    | char(200)    | YES  |     | NULL    |       |
+| last_name     | char(200)    | YES  |     | NULL    |       |
+| date_of_birth | date         | YES  |     | NULL    |       |
+| address       | varchar(200) | YES  |     | NULL    |       |
+| phone_number  | int          | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql>
+
+3. We need to store the details of orders in an e-commernce application.create an
+order_deatils table to store the following details for every order.
+
+mysql> create table order_details(order_id int,customer_id int,order_datetime datetime,shipped_datetime datetime,total_amount float);
+Query OK, 0 rows affected (0.04 sec)
+mysql> desc order_details;
++------------------+----------+------+-----+---------+-------+
+| Field            | Type     | Null | Key | Default | Extra |
++------------------+----------+------+-----+---------+-------+
+| order_id         | int      | YES  |     | NULL    |       |
+| customer_id      | int      | YES  |     | NULL    |       |
+| order_datetime   | datetime | YES  |     | NULL    |       |
+| shipped_datetime | datetime | YES  |     | NULL    |       |
+| total_amount     | float    | YES  |     | NULL    |       |
++------------------+----------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql>
+
+4. We're storing the details of players who are a part of a tournament. The database
+contains a player table that stores the name, age and score of players.
+
+mysql> create table player(name char(30),age int,score int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc player;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| name  | char(30) | YES  |     | NULL    |       |
+| age   | int      | YES  |     | NULL    |       |
+| score | int      | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into player(name,age,score)values("ram",28,30);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from player;
++------+------+-------+
+| name | age  | score |
++------+------+-------+
+| ram  |   28 |    30 |
++------+------+-------+
+1 row in set (0.00 sec)
+
+5. The database contains a player table that stores the name, age and score of
+players.
+Get all the players from the player table in the following format
+  
+mysql> insert into player(name,age,score)values("suresh",21,70),("venkat",21,43);
+Query OK, 2 rows affected (0.03 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from player;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| ram    |   28 |    30 |
+| suresh |   21 |    70 |
+| venkat |   21 |    43 |
++--------+------+-------+
+mysql> delete from player where name="ram";
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from player;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| suresh |   21 |    70 |
+| venkat |   21 |    43 |
++--------+------+-------+
+2 rows in set (0.00 sec)
+
+6. Get all the details of "suresh"from the player table in the following format.
+
+
+mysql> delete from player where name="venkat";
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from player;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| suresh |   21 |    70 |
++--------+------+-------+
+1 row in set (0.00 sec)
+
+mysql>

@@ -1,0 +1,250 @@
+1)1.Get all details of products from the "puma" brand?
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| moodle1            |
+| mysql              |
+| operator           |
+| performance_schema |
+| sakila             |
+| sys                |
+| test1              |
+| world              |
++--------------------+
+9 rows in set (0.04 sec)
+
+mysql> create database moodleday2;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> use moodleday2;
+Database changed
+mysql> use moodleday2;create table product(name char(23),category(11),price int,brand char(10),rating double);
+Database changed
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(11),price int,brand char(10),rating double)' at line 1
+mysql> use moodleday2;create table product(name char(23),category char(11),price int,brand char(10),rating double);
+Database changed
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> desc product;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| name     | char(23) | YES  |     | NULL    |       |
+| category | char(11) | YES  |     | NULL    |       |
+| price    | int      | YES  |     | NULL    |       |
+| brand    | char(10) | YES  |     | NULL    |       |
+| rating   | double   | YES  |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> inster into product values("black shirt","clothing",900,"puma",4.8);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'inster into product values("black shirt","clothing",900,"puma",4.8)' at line 1
+mysql> insert into product values("black shirt","clothing",900,"puma",4.8);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from product;
++-------------+----------+-------+-------+--------+
+| name        | category | price | brand | rating |
++-------------+----------+-------+-------+--------+
+| black shirt | clothing |   900 | puma  |    4.8 |
++-------------+----------+-------+-------+--------+
+1 row in set (0.00 sec)
+
+2) User would like to shop for 'Jeans". A common pattern in all the jeans products is
+that their name ends with "Jeans". Help the user get the details of required
+products?
+
+mysql> insert into product values("blackjeans","clothing",1000,"peterengland",5.0),("greenjeans","clothing",900,"nike",4.5),("shoes","strap",1500,"titan",5.0);
+ERROR 1406 (22001): Data too long for column 'brand' at row 1
+mysql> insert into product values("blackjeans","clothing",1000,"peterengland",5.0),("greenjeans","clothing",900,"nike",4.5),("shoes","strap",1500,"titan",5.0);
+ERROR 1406 (22001): Data too long for column 'brand' at row 1
+mysql> insert into product values("blackjeans","clothing",1000,"peter",5.0),("greenjeans","clothing",900,"nike",4.5),("shoes","strap",1500,"titan",5.0);
+Query OK, 3 rows affected (0.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from product;
++-------------+----------+-------+-------+--------+
+| name        | category | price | brand | rating |
++-------------+----------+-------+-------+--------+
+| black shirt | clothing |   900 | puma  |    4.8 |
+| blackjeans  | clothing |  1000 | peter |      5 |
+| greenjeans  | clothing |   900 | nike  |    4.5 |
+| shoes       | strap    |  1500 | titan |      5 |
++-------------+----------+-------+-------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from product where name like"%ns";
++------------+----------+-------+-------+--------+
+| name       | category | price | brand | rating |
++------------+----------+-------+-------+--------+
+| blackjeans | clothing |  1000 | peter |      5 |
+| greenjeans | clothing |   900 | nike  |    4.5 |
++------------+----------+-------+-------+--------+
+2 rows in set (0.00 sec)
+
+3.User wants to purchase "Bourbon Small", "Bourbon With Extra Cookies", or products
+from bourbon. Retrieve all details of such products accordingly?
+
+mysql> insert into product values("bourbon","biscuit",10,"bour",4.8);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from product;
++-------------+----------+-------+-------+--------+
+| name        | category | price | brand | rating |
++-------------+----------+-------+-------+--------+
+| black shirt | clothing |   900 | puma  |    4.8 |
+| blackjeans  | clothing |  1000 | peter |      5 |
+| greenjeans  | clothing |   900 | nike  |    4.5 |
+| shoes       | strap    |  1500 | titan |      5 |
+| blackjeans  | clothing |  1000 | peter |      5 |
+| greenjeans  | clothing |   900 | nike  |    4.5 |
+| shoes       | strap    |  1500 | titan |      5 |
+| bourboncake | cake     |    20 | milk  |    3.5 |
+| bourbon     | biscuit  |    10 | bour  |    4.8 |
++-------------+----------+-------+-------+--------+
+9 rows in set (0.00 sec)
+
+mysql> select * from product where name"bour%";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"bour%"' at line 1
+mysql> select * from product where name="bour%";
+Empty set (0.00 sec)
+
+mysql> select * from product where name="bourbon%";
+Empty set (0.00 sec)
+
+mysql> select * from product where like name="bourbon%";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'like name="bourbon%"' at line 1
+mysql> select * from product where like name"bourbon%";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'like name"bourbon%"' at line 1
+mysql> select * from product where name like "bourbon%";
++-------------+----------+-------+-------+--------+
+| name        | category | price | brand | rating |
++-------------+----------+-------+-------+--------+
+| bourboncake | cake     |    20 | milk  |    3.5 |
+| bourbon     | biscuit  |    10 | bour  |    4.8 |
++-------------+----------+-------+-------+--------+
+2 rows in set (0.00 sec)
+
+4)List all the "Chips" in the database?
+
+mysql> insert into product values("chips","snakes",20,"potato",4.5);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from product;
++-------------+----------+-------+--------+--------+
+| name        | category | price | brand  | rating |
++-------------+----------+-------+--------+--------+
+| black shirt | clothing |   900 | puma   |    4.8 |
+| blackjeans  | clothing |  1000 | peter  |      5 |
+| greenjeans  | clothing |   900 | nike   |    4.5 |
+| shoes       | strap    |  1500 | titan  |      5 |
+| blackjeans  | clothing |  1000 | peter  |      5 |
+| greenjeans  | clothing |   900 | nike   |    4.5 |
+| shoes       | strap    |  1500 | titan  |      5 |
+| bourboncake | cake     |    20 | milk   |    3.5 |
+| bourbon     | biscuit  |    10 | bour   |    4.8 |
+| chips       | snakes   |    20 | potato |    4.5 |
++-------------+----------+-------+--------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select * from product name=chips;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=chips' at line 1
+mysql> select * from product name="chips";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '="chips"' at line 1
+mysql> select * from product where name="chips";
++-------+----------+-------+--------+--------+
+| name  | category | price | brand  | rating |
++-------+----------+-------+--------+--------+
+| chips | snakes   |    20 | potato |    4.5 |
++-------+----------+-------+--------+--------+
+1 row in set (0.00 sec)
+
+5) Get the products whose name matches the following pattern?
+
+
+mysql> insert into product values("hero","bike",100000,"honda",5.0);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from product;
++-------------+----------+--------+--------+--------+
+| name        | category | price  | brand  | rating |
++-------------+----------+--------+--------+--------+
+| black shirt | clothing |    900 | puma   |    4.8 |
+| blackjeans  | clothing |   1000 | peter  |      5 |
+| greenjeans  | clothing |    900 | nike   |    4.5 |
+| shoes       | strap    |   1500 | titan  |      5 |
+| blackjeans  | clothing |   1000 | peter  |      5 |
+| greenjeans  | clothing |    900 | nike   |    4.5 |
+| shoes       | strap    |   1500 | titan  |      5 |
+| bourboncake | cake     |     20 | milk   |    3.5 |
+| bourbon     | biscuit  |     10 | bour   |    4.8 |
+| chips       | snakes   |     20 | potato |    4.5 |
+| hero        | bike     | 100000 | honda  |      5 |
++-------------+----------+--------+--------+--------+
+11 rows in set (0.00 sec)
+
+mysql> select * from product like"h_r_o";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'like"h_r_o"' at line 1
+mysql> select * from product where name like"h_r_o";
+Empty set (0.00 sec)
+
+mysql> select * from product where name like "h_r_o";
+Empty set (0.00 sec)
+
+mysql> select * from product where name like "h_ro";
++------+----------+--------+-------+--------+
+| name | category | price  | brand | rating |
++------+----------+--------+-------+--------+
+| hero | bike     | 100000 | honda |      5 |
++------+----------+--------+-------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from product where name like "h__o";
++------+----------+--------+-------+--------+
+| name | category | price  | brand | rating |
++------+----------+--------+-------+--------+
+| hero | bike     | 100000 | honda |      5 |
++------+----------+--------+-------+--------+
+1 row in set (0.00 sec)
+
+mysql>
+
+6)Get all the products whose price is less than or equal to 1000?
+mysql> select * from product where price<=1000;
++-------------+----------+-------+--------+--------+
+| name        | category | price | brand  | rating |
++-------------+----------+-------+--------+--------+
+| black shirt | clothing |   900 | puma   |    4.8 |
+| blackjeans  | clothing |  1000 | peter  |      5 |
+| greenjeans  | clothing |   900 | nike   |    4.5 |
+| blackjeans  | clothing |  1000 | peter  |      5 |
+| greenjeans  | clothing |   900 | nike   |    4.5 |
+| bourboncake | cake     |    20 | milk   |    3.5 |
+| bourbon     | biscuit  |    10 | bour   |    4.8 |
+| chips       | snakes   |    20 | potato |    4.5 |
++-------------+----------+-------+--------+--------+
+8 rows in set (0.00 sec)
+
+7)Get all the best rated products?
+    
+mysql> select * from product where rating>4;
++-------------+----------+--------+--------+--------+
+| name        | category | price  | brand  | rating |
++-------------+----------+--------+--------+--------+
+| black shirt | clothing |    900 | puma   |    4.8 |
+| blackjeans  | clothing |   1000 | peter  |      5 |
+| greenjeans  | clothing |    900 | nike   |    4.5 |
+| shoes       | strap    |   1500 | titan  |      5 |
+| blackjeans  | clothing |   1000 | peter  |      5 |
+| greenjeans  | clothing |    900 | nike   |    4.5 |
+| shoes       | strap    |   1500 | titan  |      5 |
+| bourbon     | biscuit  |     10 | bour   |    4.8 |
+| chips       | snakes   |     20 | potato |    4.5 |
+| hero        | bike     | 100000 | honda  |      5 |
++-------------+----------+--------+--------+--------+
+10 rows in set (0.00 sec)
+
+
