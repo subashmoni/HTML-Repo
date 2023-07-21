@@ -1,0 +1,44 @@
+.regform{
+    background-color: blue;
+    margin-right: 400px ;
+} 
+#fm{
+    border: double black 3px;
+    margin: auto 0 ;
+   text-align: center;
+   font-size: xx-large;
+   margin-left: auto 0;
+   margin-right: auto 0;
+}
+#name{
+    width: 800px;
+}
+.form{
+    background-color: bisque;
+    margin-right: 400px;
+}
+#name{
+    width: 800px;
+}
+#reg{
+    background-color: green;
+    width: 800px;
+}
+.name{
+    background-color: brown;
+    width: 600px;
+}
+#star{
+    width: 500px;
+    margin-left: 70px;
+}
+.sub{
+    width: 500;
+}
+.table{
+    border-style: initial;
+    border: red;
+}
+#button{
+    text-align-last: right;
+}
