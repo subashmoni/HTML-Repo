@@ -1,0 +1,21 @@
+.cls{
+    background-color: rgb(54, 54, 170);
+    
+}
+.clss{
+    border: 1px solid white;
+    height: 40px;
+    width: 50px;
+    text-align: center;
+    
+}
+.bar-one {
+    color: red;
+    background-color: aqua;
+   
+}
+.bar-one.span .icon{
+    color: red;
+    background-color: aqua;
+   
+}

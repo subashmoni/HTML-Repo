@@ -1,0 +1,29 @@
+.ra{
+    margin-left: 40px;
+    margin-top: 50px;
+    color: rgb(43, 43, 131);
+}
+.fnt{
+    margin-left: 40px;
+    margin-top: 50px;
+    color: blue;
+}
+.am{
+    margin-left: 40px;
+    border: 1px solid lightblue;
+    height: 100px;
+    width: 350px;
+    text-align: center;
+    background-color: lightblue;
+    color: rgb(19, 140, 180);
+    padding: 15px 10px 10px 10px;
+}
+.me{
+    border: 1px solid darkblue;
+    height: 50px;
+    width: 350px;
+    background-color: darkblue;
+    color: white;
+    padding-top: 10px;
+    margin-left: 40px;
+}

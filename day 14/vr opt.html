@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <style>
+        .image1{
+    background-image: url('https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/vr-optics-img.png');
+    height: 300px;
+    width: 80px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .image2{
+    background-image: url('https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/vr-controllers-img.png');
+    height: 300px;
+    width: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+.color1{
+  color: rgb(3, 3, 37);
+  font-weight: bold;
+}
+@media only screen and (max-width: 700px) {
+       .image1{
+        order: -1;
+       }
+}
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="vr opt.css"> -->
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-between ms-5">
+    <div class="card mt-5 col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" style="width: 22rem; height: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title mt-4 color1" >Improved Optics</h5>
+          <p class="card-text">A virtual reality head mounted device that provides virtual reality for the wearer.</p>
+          <button type="button" class="btn btn-dark button1">Read More</button>
+        </div>
+      </div>
+      <div class="image1 mt-5 col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+
+      </div>
+    </div>
+    </div>
+    <div class="container">
+      <div class="row justify-content- ms-5">
+        <div class="image2 mt-5 col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+
+        </div>
+  <div class="card mt-5 col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" style="width: 22rem; height: 18rem;">
+      <div class="card-body ">
+        <h5 class="card-title mt-4 color1">Two Tounch Controllers</h5>
+        <p class="card-text">Your Oculus Tounch controllers are a pair of tracked controllers that give you a hand.</p>
+        <button type="button" class="btn btn-dark button1">Read More</button>
+      </div>
+    </div>
+    
+  </div>
+  </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

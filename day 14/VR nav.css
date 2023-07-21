@@ -1,0 +1,17 @@
+body{
+    background-image: url("https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/vr-banner-bg.png");
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.mo{
+   
+    margin-top: 300px; 
+    text-align: center;
+    color: white;
+}
+.momo{
+    text-align: center;
+    margin-left: 50px;
+}
