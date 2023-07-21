@@ -1,0 +1,46 @@
+body{
+    background-image: url("image.jpg");
+    background-size: 100%;
+background-repeat: no-repeat;    
+}
+
+.bak{
+    box-shadow: 1px 1px 5px 5px black;
+    color: white;
+    height: 500px;
+    width: 500px;
+    margin-top: 9%;
+    position: relative;
+    left: 50px;
+    top: 50px;
+    padding-left: 20px;
+    text-decoration: underline red;
+   
+}
+.lon{
+   box-shadow: 1px 1px 5px 5px black;
+   color: white;
+    height: 500px;
+    width: 500px;
+    margin-left: 55%;
+    margin-bottom: 50px;
+    position: relative;
+    bottom: 500px;
+    right: 100px;
+    padding-left: 20px;
+    
+}
+.web{
+    border: 1px solid black;
+    padding-left: 40px;
+    border: transparent;
+    
+}
+button{
+    background-color: green;
+    height: 40px;
+    width: 150px;
+    border-radius: 40px;
+    position: relative;
+    left: 150px;
+}
