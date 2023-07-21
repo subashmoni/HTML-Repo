@@ -1,0 +1,146 @@
+1.To create a collections for customer_details and set multiple address fields using array, minimum 3 address. 
+
+kamesh> db.createCollection("customer_details")
+{ ok: 1 }
+subash> db.customer_details.insert([{"Address":"Coimbatore"},{"Address":"Erode"},{"Address":"Tirupur"}])
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("64b17315f5dd65beb893b372"),
+    '1': ObjectId("64b17315f5dd65beb893b373"),
+    '2': ObjectId("64b17315f5dd65beb893b374")
+  }
+}
+
+subash> db.customer_details.find({},{Address:1,_id:0})
+[
+  { Address: 'Coimbatore' },
+  { Address: 'Erode' },
+  { Address: 'Tirupur' }
+]
+
+
+2. To insert two new address to the person "Arvind" and "Karthik" in the address field using push method.
+
+subash> db.customer_details.updateOne({Address:"Coimbatore"},{$push:{"Name":"Aravind"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+subash> db.customer_details.updateOne({Address:"Tirupur"},{$push:{"Name":"Karthi"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+subash> db.customer_details.find({},{Name:1,Address:1,_id:0})
+[
+  { Address: 'Coimbatore', Name: [ 'Aravind' ] },
+  { Address: 'Erode' },
+  { Address: 'Tirupur', Name: [ 'Karthi' ] }
+]
+
+3. To remove first address from Arvind document using pop method.
+
+subash> db.customer_details.find({},{Name:1,Address:1,_id:0})
+[
+  { Address: 'Coimbatore' },
+  { Address: 'Erode' },
+  { Address: 'Tirupur', Name: [ 'Karthi' ] }
+]
+
+4. To remove last address from karthik document using pop method.
+
+subash> db.customer_details.updateOne({Address:"Coimbatore"},{$pop:{"Name":1}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+subash> db.customer_details.find({},{Name:1,Address:1,_id:0})
+[
+  { Address: 'Coimbatore' },
+  { Address: 'Erode' },
+  { Address: 'Tirupur' }
+]
+
+5. To remove middle address from karthik document using pull method.
+
+subash> db.customer_details.find({},{Name:1,Address:1,_id:0})
+[
+  { Address: 'Coimbatore' },
+  { Address: 'Erode', Name: [ 'Karthi' ] },
+  { Address: 'Tirupur' }
+]
+
+subash> db.customer_details.updateOne({Address:"Erode"},{$pull:{"Name":"Karthi"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+subash> db.customer_details.find({},{Name:1,Address:1,_id:0})
+[
+  { Address: 'Coimbatore' },
+  { Address: 'Erode', Name: [] },
+  { Address: 'Tirupur' }
+]
+
+6. To insert new field as discount:"Aadi sales" to all the customer.
+
+subash> db.customer_details.find({},{Address:1,discount:1,_id:0})
+[
+  { Address: 'Coimbatore', discount: [ 'Aadi sales' ] },
+  { Address: 'Erode', discount: [ 'Aadi sales' ] },
+  { Address: 'Tirupur', discount: [ 'Aadi sales' ] },
+]
+
+7. To delete a specify document from the collection.
+
+subash> db.customer_details.deleteOne({"Address":"Coimbatore"})
+{ acknowledged: true, deletedCount: 1 }
+kamesh> db.customer_details.find({},{Address:1,_id:0})
+[
+  { Address: 'Erode' },
+  { Address: 'Tirupur' },
+]
+
+8. To delete a repeated document from the collection.
+subash> db.customer_details.deleteMany({"discount":"Aadi Sales"})
+{ acknowledged: true, deletedCount: 2 }
+kamesh> db.customer_details.find({},{discount:1,_id:0})
+[
+  { discount: [ 'Aadi sales' ] },
+  { discount: [ 'Aadi sales' ] },
+]
+
+subash> db.customer_details.remove({"Address":"Erode"},{discount:1,_id:0})
+
+
+9. To drop the collection
+
+subash> db.customer_details.drop()
+true
+subash> show collections
+product_det
+Student_Table
+
+10. To drop the database.
+subash> db.dropDatabase()
+{ ok: 1, dropped: 'kamesh' }
+kamesh> show dbs
+admin     40.00 KiB
+batch17  288.00 KiB
+config   108.00 KiB
+local     72.00 KiB
+

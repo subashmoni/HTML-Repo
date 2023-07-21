@@ -1,0 +1,249 @@
+1. To retrieve student details whose marks are greater than 40 using logical operator.
+
+sudharsanan> db.Students_det.find({$and:[{M1:{$gte:40}},{M2:{$gte:40}},{M3:{$gte:40}}]},{Name:1,_id:0})
+[
+  { Name: 'Kamesh' },
+  { Name: 'Sudharsanan' },
+  { Name: 'Subash' },
+  { Name: 'Ashok' },
+  { Name: 'Gabijr' }
+]
+
+2.  To retrieve only student name and course who failed in all subjects.
+
+sudharsanan> db.Students_det.find({$and:[{M1:{$lt:40}},{M2:{$lt:40}},{M3:{$lt:40}}]},{Name:1,Course:1,_id:0})
+[ { Name: 'Kamali', Course: 'EEE' } ]
+
+3.  To retrieve only student name and course who failed in only one subject.
+
+sudharsanan> db.Students_det.find({$or:[{M1:{$lt:40}},{M2:{$lt:40}},{M3:{$lt:40}}]},{Name:1,Course:1,_id:0})
+[ { Name: 'Kamali', Course: 'EEE' } ]
+
+4. To retrieve student documents whose subjects only in HTML,MongoDB using in operator
+
+sudharsanan> db.Students_det.find({Subjects:{$eq:['HTML','MongoDB']}},{Name:1,'Subjects':1,_id:0})
+[ { Name: 'Scottjr', Subjects: [ 'HTML', 'MongoDB' ] } ]
+
+5. To retrieve students documents whose age not greater than 21.
+
+sudharsanan> db.Students_det.find({'Personal.Age':{$lt:21}})
+[
+  {
+    _id: ObjectId("64afe9598b7565bd233096e4"),
+    Name: 'Ashok',
+    Course: 'CSE',
+    M1: 56,
+    M2: 62,
+    M3: 87,
+    Subjects: [ 'HTML', 'CSS', 'MongoDB' ],
+    Personal: {
+      Age: 20,
+      DOB: ISODate("2002-07-25T00:00:00.000Z"),
+      Father_name: 'Mahendra',
+      Mobile: 9876543213,
+      Email: 'ashok123@gmail.com',
+      Address: 'Coimbatore,Tamilnadu'
+    }
+  },
+  {
+    _id: ObjectId("64afe9598b7565bd233096e5"),
+    Name: 'Gabijr',
+    Course: 'IT',
+    M1: 59,
+    M2: 69,
+    M3: 79,
+    Subjects: [ 'HTML', 'CSS', 'MongoDB' ],
+    Personal: {
+      Age: 20,
+      DOB: ISODate("2002-11-17T00:00:00.000Z"),
+      Father_name: 'Gabi',
+      Mobile: 9876543213,
+      Email: 'gabi123@gmail.com',
+      Address: 'Trichy,Tamilnadu'
+    }
+  }
+]
+
+
+6. To display only two documents  by using limt() method.
+
+sudharsanan> db.Students_det.find({'Personal.Age':{$lt:21}}).limit(1)
+[
+  {
+    _id: ObjectId("64afe9598b7565bd233096e4"),
+    Name: 'Ashok',
+    Course: 'CSE',
+    M1: 56,
+    M2: 62,
+    M3: 87,
+    Subjects: [ 'HTML', 'CSS', 'MongoDB' ],
+    Personal: {
+      Age: 20,
+      DOB: ISODate("2002-07-25T00:00:00.000Z"),
+      Father_name: 'Mahendra',
+      Mobile: 9876543213,
+      Email: 'ashok123@gmail.com',
+      Address: 'Coimbatore,Tamilnadu'
+    }
+  }
+]
+
+7. To display only two documents  and skip 2 documents.
+
+sudharsanan> db.Students_det.find().limit(3).skip(2)
+[
+  {
+    _id: ObjectId("64afe9598b7565bd233096e3"),
+    Name: 'Subash',
+    Course: 'CSE',
+    M1: 45,
+    M2: 67,
+    M3: 84,
+    Subjects: [ 'HTML', 'CSS', 'MongoDB' ],
+    Personal: {
+      Age: 24,
+      DOB: ISODate("1999-12-02T00:00:00.000Z"),
+      Father_name: 'Babu',
+      Mobile: 9876543212,
+      Email: 'subash123@gmail.com',
+      Address: 'Coimbatore,Tamilnadu'
+    }
+  },
+  {
+    _id: ObjectId("64afe9598b7565bd233096e4"),
+    Name: 'Ashok',
+    Course: 'CSE',
+    M1: 56,
+    M2: 62,
+    M3: 87,
+    Subjects: [ 'HTML', 'CSS', 'MongoDB' ],
+    Personal: {
+      Age: 20,
+      DOB: ISODate("2002-07-25T00:00:00.000Z"),
+      Father_name: 'Mahendra',
+      Mobile: 9876543213,
+      Email: 'ashok123@gmail.com',
+      Address: 'Coimbatore,Tamilnadu'
+    }
+  },
+  {
+    _id: ObjectId("64afe9598b7565bd233096e5"),
+    Name: 'Gabijr',
+    Course: 'IT',
+    M1: 59,
+    M2: 69,
+    M3: 79,
+    Subjects: [ 'HTML', 'CSS', 'MongoDB' ],
+    Personal: {
+      Age: 20,
+      DOB: ISODate("2002-11-17T00:00:00.000Z"),
+      Father_name: 'Gabi',
+      Mobile: 9876543213,
+      Email: 'gabi123@gmail.com',
+      Address: 'Trichy,Tamilnadu'
+    }
+  }
+]
+
+8. To sort the name in ascending and descending order.
+sudharsanan> db.Students_det.find({},{Name:1,_id:0}).sort()
+sudharsanan> db.Students_det.find({},{Name:1,_id:0}).sort({Name:1})
+[
+  { Name: 'Ashok' },
+  { Name: 'Gabijr' },
+  { Name: 'Kamali' },
+  { Name: 'Kamesh' },
+  { Name: 'Scottjr' },
+  { Name: 'Subash' },
+  { Name: 'Sudharsanan' }
+]
+9. To sort the DOB in ascending and descending order.
+
+sudharsanan> db.Students_det.find({},{Name:1,'Personal.DOB':1,_id:0}).sort({'Personal.DOB':-1})
+[
+  {
+    Name: 'Gabijr',
+    Personal: { DOB: ISODate("2002-11-17T00:00:00.000Z") }
+  },
+  {
+    Name: 'Ashok',
+    Personal: { DOB: ISODate("2002-07-25T00:00:00.000Z") }
+  },
+  {
+    Name: 'Kamali',
+    Personal: { DOB: ISODate("2002-05-20T00:00:00.000Z") }
+  },
+  {
+    Name: 'Scottjr',
+    Personal: { DOB: ISODate("2002-05-11T00:00:00.000Z") }
+  },
+  {
+    Name: 'Subash',
+    Personal: { DOB: ISODate("1999-12-02T00:00:00.000Z") }
+  },
+  {
+    Name: 'Kamesh',
+    Personal: { DOB: ISODate("1995-05-31T00:00:00.000Z") }
+  },
+  {
+    Name: 'Sudharsanan',
+    Personal: { DOB: ISODate("1995-05-11T00:00:00.000Z") }
+  }
+]
+
+10.To skip first 2 documents and display remaining 3 documents.
+
+sudharsanan> db.Students_det.find().limit(3).skip(2)
+[
+  {
+    _id: ObjectId("64afe9598b7565bd233096e3"),
+    Name: 'Subash',
+    Course: 'CSE',
+    M1: 45,
+    M2: 67,
+    M3: 84,
+    Subjects: [ 'HTML', 'CSS', 'MongoDB' ],
+    Personal: {
+      Age: 24,
+      DOB: ISODate("1999-12-02T00:00:00.000Z"),
+      Father_name: 'Babu',
+      Mobile: 9876543212,
+      Email: 'subash123@gmail.com',
+      Address: 'Coimbatore,Tamilnadu'
+    }
+  },
+  {
+    _id: ObjectId("64afe9598b7565bd233096e4"),
+    Name: 'Ashok',
+    Course: 'CSE',
+    M1: 56,
+    M2: 62,
+    M3: 87,
+    Subjects: [ 'HTML', 'CSS', 'MongoDB' ],
+    Personal: {
+      Age: 20,
+      DOB: ISODate("2002-07-25T00:00:00.000Z"),
+      Father_name: 'Mahendra',
+      Mobile: 9876543213,
+      Email: 'ashok123@gmail.com',
+      Address: 'Coimbatore,Tamilnadu'
+    }
+  },
+  {
+    _id: ObjectId("64afe9598b7565bd233096e5"),
+    Name: 'Gabijr',
+    Course: 'IT',
+    M1: 59,
+    M2: 69,
+    M3: 79,
+    Subjects: [ 'HTML', 'CSS', 'MongoDB' ],
+    Personal: {
+      Age: 20,
+      DOB: ISODate("2002-11-17T00:00:00.000Z"),
+      Father_name: 'Gabi',
+      Mobile: 9876543213,
+      Email: 'gabi123@gmail.com',
+      Address: 'Trichy,Tamilnadu'
+    }
+  }
+]

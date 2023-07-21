@@ -1,0 +1,145 @@
+1. To create a product details collection which includes the following fields
+
+product_id, product_name, price, no.quantity, company:{name,purchasedate}
+
+Note: create 12 records and repeat multiple products entry with different purchase date
+
+sudharsanan> db.Product_det.find()
+[
+  {
+    _id: ObjectId("64b013868b7565bd233096e8"),
+    Product_id: 1000,
+    Product_name: 'iphone 11',
+    Price: 48900,
+    'No.quantity': 2,
+    Company: {
+      Name: 'Apple',
+      Purchasedate: ISODate("2023-06-04T00:00:00.000Z")
+    }
+  },
+  {
+    _id: ObjectId("64b01bc68b7565bd233096e9"),
+    Product_id: 1001,
+    Product_name: 'iphone 11',
+    Price: 48900,
+    'No.quantity': 1,
+    Company: {
+      Name: 'Apple',
+      Purchasedate: ISODate("2023-06-17T00:00:00.000Z")
+    }
+  },
+  {
+    _id: ObjectId("64b01c428b7565bd233096ea"),
+    Product_id: 1002,
+    Product_name: 'Samsung S23 Ultra',
+    Price: 16000,
+    'No.quantity': 2,
+    Company: {
+      Name: 'Samsung',
+      Purchasedate: ISODate("2023-06-22T00:00:00.000Z")
+    }
+  },
+  {
+    _id: ObjectId("64b01ce88b7565bd233096eb"),
+    Product_id: 1003,
+    Product_name: 'OnePlus 11R',
+    Price: 55000,
+    'No.quantity': 3,
+    Company: {
+      Name: 'OnePlus',
+      Purchasedate: ISODate("2023-06-27T00:00:00.000Z")
+    }
+  },
+  {
+    _id: ObjectId("64b01eb18b7565bd233096ec"),
+    Product_id: 1004,
+    Product_name: 'iphone 14',
+    Price: 130000,
+    'No.quantity': 1,
+    Company: {
+      Name: 'Apple',
+      Purchasedate: ISODate("2023-07-02T00:00:00.000Z")
+    }
+  }
+]
+
+2. To display five matching of a product name "iphone 11".
+
+sudharsanan> db.Product_det.find({Product_name:'iphone 11'})
+[
+  {
+    _id: ObjectId("64b013868b7565bd233096e8"),
+    Product_id: 1000,
+    Product_name: 'iphone 11',
+    Price: 48900,
+    'No.quantity': 2,
+    Company: {
+      Name: 'Apple',
+      Purchasedate: ISODate("2023-06-04T00:00:00.000Z")
+    }
+  },
+  {
+    _id: ObjectId("64b01bc68b7565bd233096e9"),
+    Product_id: 1001,
+    Product_name: 'iphone 11',
+    Price: 48900,
+    'No.quantity': 1,
+    Company: {
+      Name: 'Apple',
+      Purchasedate: ISODate("2023-06-17T00:00:00.000Z")
+    }
+  }
+]
+
+3. To group all the products based on their company name.
+
+example:
+
+iPhone 11 - Apple - 5
+sudharsanan> db.Product_det.find({'Company.Name':'Apple'},{'Product_name':1,'Company.Name':1,'No.quantity':1})
+[
+  {
+    _id: ObjectId("64b013868b7565bd233096e8"),
+    Product_name: 'iphone 11',
+    Company: { Name: 'Apple' }
+  },
+  {
+    _id: ObjectId("64b01bc68b7565bd233096e9"),
+    Product_name: 'iphone 11',
+    Company: { Name: 'Apple' }
+  },
+  {
+    _id: ObjectId("64b01eb18b7565bd233096ec"),
+    Product_name: 'iphone 14',
+    Company: { Name: 'Apple' }
+  }
+]
+
+4.To group all the products and its total sum_price.
+
+sudharsanan> db.Product_det.aggregate([{$group:{_id:'$Product_name',Total_Price:{$sum:'$Price'}}}])
+[
+  { _id: 'iphone 14', Total_Price: 130000 },
+  { _id: 'Samsung S23 Ultra', Total_Price: 16000 },
+  { _id: 'iphone 11', Total_Price: 97800 },
+  { _id: 'OnePlus 11R', Total_Price: 55000 }
+]
+
+5..To group all the products , total sum_price, and average price .of a product.
+
+sudharsanan> db.Product_det.aggregate([{$group:{_id:'$Product_name',Total_Price:{$sum:'$Price'},Avg_Price:{$avg:'$Price'}}}])
+[
+  { _id: 'OnePlus 11R', Total_Price: 55000, Avg_Price: 55000 },
+  { _id: 'iphone 11', Total_Price: 97800, Avg_Price: 48900 },
+  { _id: 'Samsung S23 Ultra', Total_Price: 16000, Avg_Price: 16000 },
+  { _id: 'iphone 14', Total_Price: 130000, Avg_Price: 130000 }
+]
+
+6. To group all the products and sort it based on the company name.
+sudharsanan> db.Product_det.aggregate([{$group:{_id:'$Product_name'}},{$sort:{'Company.Name':1}}])
+[
+  { _id: 'OnePlus 11R' },
+  { _id: 'iphone 11' },
+  { _id: 'Samsung S23 Ultra' },
+  { _id: 'iphone 14' }
+]

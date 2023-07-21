@@ -1,0 +1,352 @@
+1. Create a Student Table to store name, course,m1,m2,m3,subjects:["HTML",CSS","MongoDB"],personal:{age,dob,father name,
+mobile number,email id,address}  of students.
+
+Employee> db.Std.insertMany([{"Name":"Subash","Course":"Bca","m1":80,"m2":85,"m3":93,"Subject":["HTML","CSS"],"Personal":{"Age":23,"Dob":1999-12-02,"Father_name":"Babu","Mobile_num":6380829456,"Enail_id":"Subash23@gmail.com","Address":"Coimbatore"}}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("64af49de956313e5cc02f109") }
+}
+Employee> db.Std.insertMany([{"Name":"Amuthavan","Course":"Bca","m1":85,"m2":79,"m3":90,"Subject":["HTML","CSS"],"Personal":{"Age":20,"Dob":2002-05-05,"Father_name":"Raj","Mobile_num":638084826,"Enail_id":"Amutha23@gmail.com","Address":"Trichy"}}}])
+Uncaught:
+SyntaxError: Unexpected token (1:236)
+
+Employee> db.Std.insertMany([{"Name":"Sudharasan","Course":"Bsc_cs","m1":50,"m2":40,"m3":30,"Subject":["HTML","CSS"],"Personal":{"Age":20,"Dob":2001-06-07,"Father_name":"bala","Mobile_num":9629168223,"Email_id":"Sudha@gmail.com","Address":"Namakal"}}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("64af4d47956313e5cc02f10b") }
+}
+Employee> db.Std.insertMany([{"Name":"Prasanth","Course":"Mca","m1":50,"m2":68,"m3":55,"Subject":["HTML","CSS"],"Personal":{"Age":22,"Dob":2000-11-02,"Father_name":"Moorthi","Mobile_num":6329538970,"Email_id":"Prasanth5@gmail.com","Address":"Thirupur"}}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("64af4de4956313e5cc02f10c") }
+}
+Employee> db.Std.insertMany([{"Name":"Hari","Course":"Mba","m1":89,"m2":80,"m3":30,"Subject":["HTML","CSS"],"Personal":{"Age":23,"Dob":1999-02-05,"Father_name":"Murugan","Mobile_num":9929538970,"Email_id":"Hari@gmail.com","Address":"Selam"}}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("64af4e82956313e5cc02f10d") }
+}
+Employee> db.Std.insertMany([{"Name":"Ashok","Course":"Phd","m1":79,"m2":85,"m3":80,"Subject":["HTML","CSS"],"Personal":{"Age":20,"Dob":2002-02-05,"Father_name":"Ramesh","Mobile_num":638359265,"Email_id":"Ashok25@gmail.com","Address":"Coimbatore"}}])
+
+
+4. Find all documents in the collection of the student.
+
+Employee> db.Std.find()
+[
+  {
+    _id: ObjectId("64af49de956313e5cc02f109"),
+    Name: 'Subash',
+    Course: 'Bca',
+    m1: 80,
+    m2: 85,
+    m3: 93,
+    Subject: [ 'HTML', 'CSS' ],
+    Personal: {
+      Age: 23,
+      Dob: 1985,
+      Father_name: 'Babu',
+      Mobile_num: 6380829456,
+      Enail_id: 'Subash23@gmail.com',
+      Address: 'Coimbatore'
+    }
+  },
+  {
+    _id: ObjectId("64af4d11956313e5cc02f10a"),
+    Name: 'Amuthavan',
+    Course: 'Bca',
+    m1: 85,
+    m2: 79,
+    m3: 90,
+    Subject: [ 'HTML', 'CSS' ],
+    Personal: {
+      Age: 20,
+      Dob: 1992,
+      Father_name: 'Raj',
+      Mobile_num: 638084826,
+      Enail_id: 'Amutha23@gmail.com',
+      Address: 'Trichy'
+    }
+  },
+  {
+    _id: ObjectId("64af4d47956313e5cc02f10b"),
+    Name: 'Sudharasan',
+    Course: 'Bsc_cs',
+    m1: 50,
+    m2: 40,
+    m3: 30,
+    Subject: [ 'HTML', 'CSS' ],
+    Personal: {
+      Age: 20,
+      Dob: 1988,
+      Father_name: 'bala',
+      Mobile_num: 9629168223,
+      Email_id: 'Sudha@gmail.com',
+      Address: 'Namakal'
+    }
+  },
+  {
+    _id: ObjectId("64af4de4956313e5cc02f10c"),
+    Name: 'Prasanth',
+    Course: 'Mca',
+    m1: 50,
+    m2: 68,
+    m3: 55,
+    Subject: [ 'HTML', 'CSS' ],
+    Personal: {
+      Age: 22,
+      Dob: 1987,
+      Father_name: 'Moorthi',
+      Mobile_num: 6329538970,
+      Email_id: 'Prasanth5@gmail.com',
+      Address: 'Thirupur'
+    }
+  },
+  {
+    _id: ObjectId("64af4e82956313e5cc02f10d"),
+    Name: 'Hari',
+    Course: 'Mba',
+    m1: 89,
+    m2: 80,
+    m3: 30,
+    Subject: [ 'HTML', 'CSS' ],
+    Personal: {
+      Age: 23,
+      Dob: 1992,
+      Father_name: 'Murugan',
+      Mobile_num: 9929538970,
+      Email_id: 'Hari@gmail.com',
+      Address: 'Selam'
+    }
+  },
+  {
+    _id: ObjectId("64af4efb956313e5cc02f10e"),
+    Name: 'Ashok',
+    Course: 'Phd',
+    m1: 79,
+    m2: 85,
+    m3: 80,
+    Subject: [ 'HTML', 'CSS' ],
+    Personal: {
+      Age: 20,
+      Dob: 1995,
+      Father_name: 'Ramesh',
+      Mobile_num: 638359265,
+      Email_id: 'Ashok25@gmail.com',
+      Address: 'Coimbatore'
+    }
+  }
+]
+
+
+3. Find first documents in the collection of the student.
+
+Employee> db.Std.find({"name":1,_id:0})
+
+Employee> db.Std.find({"Name":"Subash",_id:0})
+
+Employee> db.Std.find({Name:"Subash"})
+[
+  {
+    _id: ObjectId("64af49de956313e5cc02f109"),
+    Name: 'Subash',
+    Course: 'Bca',
+    m1: 80,
+    m2: 85,
+    m3: 93,
+    Subject: [ 'HTML', 'CSS' ],
+    Personal: {
+      Age: 23,
+      Dob: 1985,
+      Father_name: 'Babu',
+      Mobile_num: 6380829456,
+      Enail_id: 'Subash23@gmail.com',
+      Address: 'Coimbatore'
+    }
+  }
+]
+
+
+
+4.Retrieve student's documents whose student course is B.E CSE.
+
+Employee> db.Std.find({},{"Course":1,_id:0})
+[
+  { Course: 'Bca' },
+  { Course: 'Bca' },
+  { Course: 'Bsc_cs' },
+  { Course: 'Mca' },
+  { Course: 'Mba' },
+  { Course: 'Phd' }
+]
+
+
+5. Retrieve only student name fields with the help of projection.
+
+Employee> db.Std.find({},{"Name":1,_id:0})
+[
+  { Name: 'Subash' },
+  { Name: 'Amuthavan' },
+  { Name: 'Sudharasan' },
+  { Name: 'Prasanth' },
+  { Name: 'Hari' },
+  { Name: 'Ashok' }
+]
+
+6. Retrieve student name, course, mobile number fields with the help of projection.
+
+Employee> db.Std.find({},{"Name":1,"Course":1,"Personal.Mobile_num":1,_id:0})
+[
+  {
+    Name: 'Subash',
+    Course: 'Bca',
+    Personal: { Mobile_num: 6380829456 }
+  },
+  {
+    Name: 'Amuthavan',
+    Course: 'Bca',
+    Personal: { Mobile_num: 638084826 }
+  },
+  {
+    Name: 'Sudharasan',
+    Course: 'Bsc_cs',
+    Personal: { Mobile_num: 9629168223 }
+  },
+  {
+    Name: 'Prasanth',
+    Course: 'Mca',
+    Personal: { Mobile_num: 6329538970 }
+  },
+  { Name: 'Hari', Course: 'Mba', Personal: { Mobile_num: 9929538970 } },
+  { Name: 'Ashok', Course: 'Phd', Personal: { Mobile_num: 638359265 } }
+]
+
+
+7. Retrieve only student name whose m1 is greater than 70.
+
+Employee> db.Std.find({m1:{$gt:70}},{"Name":1,"m1":1,_id:0})
+[
+  { Name: 'Subash', m1: 80 },
+  { Name: 'Amuthavan', m1: 85 },
+  { Name: 'Hari', m1: 89 },
+  { Name: 'Ashok', m1: 79 }
+]
+
+
+8. Retrieve only student name whose m2 is less than 70.
+
+Employee> db.Std.find({m1:{$lt:70}},{"Name":1,"m1":1,_id:0})
+[ { Name: 'Sudharasan', m1: 50 }, { Name: 'Prasanth', m1: 50 } ]
+
+
+10. Retrieve only student name whose name equal to "Sachin"
+
+Employee> db.Std.find({"Name":{"$eq":"Sudharasan"}})
+[
+  {
+    _id: ObjectId("64af4d47956313e5cc02f10b"),
+    Name: 'Sudharasan',
+    Course: 'Bsc_cs',
+    m1: 50,
+    m2: 40,
+    m3: 30,
+    Subject: [ 'HTML', 'CSS' ],
+    Personal: {
+      Age: 20,
+      Dob: 1988,
+      Father_name: 'bala',
+      Mobile_num: 9629168223,
+      Email_id: 'Sudha@gmail.com',
+      Address: 'Namakal'
+    }
+  }
+]
+
+11. Retrieve only student name whose name not equal to "Sachin".
+
+Employee> db.Std.find({"Name":{"$not":{"$eq":"Sudharasan"}}})
+[
+  {
+    _id: ObjectId("64af49de956313e5cc02f109"),
+    Name: 'Subash',
+    Course: 'Bca',
+    m1: 80,
+    m2: 85,
+    m3: 93,
+    Subject: [ 'HTML', 'CSS' ],
+    Personal: {
+      Age: 23,
+      Dob: 1985,
+      Father_name: 'Babu',
+      Mobile_num: 6380829456,
+      Enail_id: 'Subash23@gmail.com',
+      Address: 'Coimbatore'
+    }
+  },
+  {
+    _id: ObjectId("64af4d11956313e5cc02f10a"),
+    Name: 'Amuthavan',
+    Course: 'Bca',
+    m1: 85,
+    m2: 79,
+    m3: 90,
+    Subject: [ 'HTML', 'CSS' ],
+    Personal: {
+      Age: 20,
+      Dob: 1992,
+      Father_name: 'Raj',
+      Mobile_num: 638084826,
+      Enail_id: 'Amutha23@gmail.com',
+      Address: 'Trichy'
+    }
+  },
+  {
+    _id: ObjectId("64af4de4956313e5cc02f10c"),
+    Name: 'Prasanth',
+    Course: 'Mca',
+    m1: 50,
+    m2: 68,
+    m3: 55,
+    Subject: [ 'HTML', 'CSS' ],
+    Personal: {
+      Age: 22,
+      Dob: 1987,
+      Father_name: 'Moorthi',
+      Mobile_num: 6329538970,
+      Email_id: 'Prasanth5@gmail.com',
+      Address: 'Thirupur'
+    }
+  },
+  {
+    _id: ObjectId("64af4e82956313e5cc02f10d"),
+    Name: 'Hari',
+    Course: 'Mba',
+    m1: 89,
+    m2: 80,
+    m3: 30,
+    Subject: [ 'HTML', 'CSS' ],
+    Personal: {
+      Age: 23,
+      Dob: 1992,
+      Father_name: 'Murugan',
+      Mobile_num: 9929538970,
+      Email_id: 'Hari@gmail.com',
+      Address: 'Selam'
+    }
+  },
+  {
+    _id: ObjectId("64af4efb956313e5cc02f10e"),
+    Name: 'Ashok',
+    Course: 'Phd',
+    m1: 79,
+    m2: 85,
+    m3: 80,
+    Subject: [ 'HTML', 'CSS' ],
+    Personal: {
+      Age: 20,
+      Dob: 1995,
+      Father_name: 'Ramesh',
+      Mobile_num: 638359265,
+      Email_id: 'Ashok25@gmail.com',
+      Address: 'Coimbatore'
+    }
+  }
+]

@@ -1,0 +1,324 @@
+1. Create a Student Table to store name, age and score of students
+
+Name: String
+
+Age: number
+
+Score: floating point
+
+Insert One:
+-----------
+
+batch17> db.Student_Tap.insertOne({"Name":"Kameshwar","Age":28, "Score":99.5})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64aed09db77990bcac0c5f17")
+}
+Insert Many:
+------------
+batch17> db.Student_Tap.insertMany([{"Name":"Kameshwar","Age":28, "Score":99.5},{"Name":"Subash", "Age":24, "Score":100},{"Nmae":"Bharathi", "Age":23, "Score":98.51}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("64aed2afb77990bcac0c5f18"),
+    '1': ObjectId("64aed2afb77990bcac0c5f19"),
+    '2': ObjectId("64aed2afb77990bcac0c5f1a")
+  }
+}
+
+batch17> db.Student_Tap.insertMany([{"Name":"Aravind Manikandan","Age":28, "Score":91.5},{"Name":"Kamali", "Age":21, "Score":90},{"Nmae":"Aravind", "Age":23, "Score":98.51}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("64aee4b9b77990bcac0c5f27"),
+    '1': ObjectId("64aee4b9b77990bcac0c5f28"),
+    '2': ObjectId("64aee4b9b77990bcac0c5f29")
+  }
+}
+batch17> db.Student_Tap.find().pretty()
+[
+  {
+    _id: ObjectId("64aed09db77990bcac0c5f17"),
+    Name: 'Kameshwar',
+    Age: 28,
+    Score: 99.5
+  },
+  {
+    _id: ObjectId("64aed2afb77990bcac0c5f18"),
+    Name: 'Kameshwar',
+    Age: 28,
+    Score: 99.5
+  },
+  {
+    _id: ObjectId("64aed2afb77990bcac0c5f19"),
+    Name: 'Subash',
+    Age: 24,
+    Score: 100
+  },
+  {
+    _id: ObjectId("64aed2afb77990bcac0c5f1a"),
+    Nmae: 'Bharathi',
+    Age: 23,
+    Score: 98.51
+  },
+  {
+    _id: ObjectId("64aee4b9b77990bcac0c5f27"),
+    Name: 'Aravind Manikandan',
+    Age: 28,
+    Score: 91.5
+  },
+  {
+    _id: ObjectId("64aee4b9b77990bcac0c5f28"),
+    Name: 'Kamali',
+    Age: 21,
+    Score: 90
+  },
+  {
+    _id: ObjectId("64aee4b9b77990bcac0c5f29"),
+    Nmae: 'Aravind',
+    Age: 23,
+    Score: 98.51
+  }
+]
+
+2. In a typical e-commerce application, we need to store the following customer details.
+
+Create a collection as customer to store the data.
+
+
+batch17> db.createCollection("Customer")
+{ ok: 1 }
+batch17> db.Customer.insertMany([{"Customerid":11, "First Name":"Subash", "Last Name":"Bose","Date":new Date("2023-07-12"), "Address":"Saravanambatti Coimbatore", "Phone":978654321},{"Customerid":12, "First Name":"Chakaravarthi","Last Name":"Mithun", "Date":new Date("2023-07-12"),"Address":"Saravanampatti Coimbatore", "Phone":98746321},{"Customer":13, "First Name":"Amu","Last Name":"Thavan", "Date":new Date("2023-07-12"),"Address":"Saravanampatti Coimbatore", "Phone":65412879}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("64aedea2b77990bcac0c5f1b"),
+    '1': ObjectId("64aedea2b77990bcac0c5f1c"),
+    '2': ObjectId("64aedea2b77990bcac0c5f1d")
+  }
+}
+batch17> db.Customer.insertMany([{"Customerid":14, "First Name":"Sudharsanan", "Last Name":"Ashok","Date":new Date("2023-07-12"), "Address":"KCT Coimbatore", "Phone":798654321},{"Customerid":15, "First Name":"Sailesh","Last Name":"Bal", "Date":new Date("2023-07-12"),"Address":"Chitra Coimbatore", "Phone":89746321},{"Customer":16, "First Name":"Prasanth","Last Name":"Kutty", "Date":new Date("2023-07-12"),"Address":"Kgisl Coimbatore", "Phone":56412879}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("64aedf71b77990bcac0c5f1e"),
+    '1': ObjectId("64aedf71b77990bcac0c5f1f"),
+    '2': ObjectId("64aedf71b77990bcac0c5f20")
+  }
+}
+batch17> db.Customer.find({},{_id:0})
+[
+  {
+    Customerid: 11,
+    'First Name': 'Subash',
+    'Last Name': 'Bose',
+    Date: ISODate("2023-07-12T00:00:00.000Z"),
+    Address: 'Saravanambatti Coimbatore',
+    Phone: 978654321
+  },
+  {
+    Customerid: 12,
+    'First Name': 'Chakaravarthi',
+    'Last Name': 'Mithun',
+    Date: ISODate("2023-07-12T00:00:00.000Z"),
+    Address: 'Saravanampatti Coimbatore',
+    Phone: 98746321
+  },
+  {
+    Customer: 13,
+    'First Name': 'Amu',
+    'Last Name': 'Thavan',
+    Date: ISODate("2023-07-12T00:00:00.000Z"),
+    Address: 'Saravanampatti Coimbatore',
+    Phone: 65412879
+  },
+  {
+    Customerid: 14,
+    'First Name': 'Sudharsanan',
+    'Last Name': 'Ashok',
+    Date: ISODate("2023-07-12T00:00:00.000Z"),
+    Address: 'KCT Coimbatore',
+    Phone: 798654321
+  },
+  {
+    Customerid: 15,
+    'First Name': 'Sailesh',
+    'Last Name': 'Bal',
+    Date: ISODate("2023-07-12T00:00:00.000Z"),
+    Address: 'Chitra Coimbatore',
+    Phone: 89746321
+  },
+  {
+    Customer: 16,
+    'First Name': 'Prasanth',
+    'Last Name': 'Kutty',
+    Date: ISODate("2023-07-12T00:00:00.000Z"),
+    Address: 'Kgisl Coimbatore',
+    Phone: 56412879
+  }
+]
+
+3. In a typical e-commerce application, we need to store the following order details.
+
+Create a collection as order_det to store the data.
+
+]
+batch17> db.createCollection("order_det")
+{ ok: 1 }
+batch17> db.order_det.insertOne({"Orderid":101, "Customerid":11, "Order_datetime":new ISODate("2023-07-12T04:12:31.000Z"),"Shipped_datetime":new ISODate("2023-07-12T04:16:10.000Z"),"Total_amount":469.10})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64aee31eb77990bcac0c5f21")
+}
+batch17> db.order_det.insertOne({"Orderid":102, "Customerid":12, "Order_datetime":new ISODate("2023-07-12T05:12:31.000Z"),"Shipped_datetime":new ISODate("2023-07-12T05:16:10.000Z"),"Total_amount":429.10})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64aee343b77990bcac0c5f22")
+}
+batch17> db.order_det.insertOne({"Orderid":103, "Customerid":13, "Order_datetime":new ISODate("2023-07-12T04:12:31.000Z"),"Shipped_datetime":new ISODate("2023-07-12T04:16:10.000Z"),"Total_amount":329.10})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64aee35bb77990bcac0c5f23")
+}
+batch17> db.order_det.insertOne({"Orderid":104, "Customerid":14, "Order_datetime":new ISODate("2023-07-12T02:12:31.000Z"),"Shipped_datetime":new ISODate("2023-07-12T03:18:10.000Z"),"Total_amount":129.10})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64aee378b77990bcac0c5f24")
+}
+batch17> db.order_det.insertOne({"Orderid":105, "Customerid":15, "Order_datetime":new ISODate("2023-07-12T03:56:31.000Z"),"Shipped_datetime":new ISODate("2023-07-12T04:18:10.000Z"),"Total_amount":189.10})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64aee398b77990bcac0c5f25")
+}
+batch17> db.order_det.insertOne({"Orderid":106, "Customerid":16, "Order_datetime":new ISODate("2023-07-12T01:06:31.000Z"),"Shipped_datetime":new ISODate("2023-07-12T01:18:10.000Z"),"Total_amount":289.10})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64aee3b2b77990bcac0c5f26")
+}
+batch17> db.order_det.find().pretty()
+[
+  {
+    _id: ObjectId("64aee31eb77990bcac0c5f21"),
+    Orderid: 101,
+    Customerid: 11,
+    Order_datetime: ISODate("2023-07-12T04:12:31.000Z"),
+    Shipped_datetime: ISODate("2023-07-12T04:16:10.000Z"),
+    Total_amount: 469.1
+  },
+  {
+    _id: ObjectId("64aee343b77990bcac0c5f22"),
+    Orderid: 102,
+    Customerid: 12,
+    Order_datetime: ISODate("2023-07-12T05:12:31.000Z"),
+    Shipped_datetime: ISODate("2023-07-12T05:16:10.000Z"),
+    Total_amount: 429.1
+  },
+  {
+    _id: ObjectId("64aee35bb77990bcac0c5f23"),
+    Orderid: 103,
+    Customerid: 13,
+    Order_datetime: ISODate("2023-07-12T04:12:31.000Z"),
+    Shipped_datetime: ISODate("2023-07-12T04:16:10.000Z"),
+    Total_amount: 329.1
+  },
+  {
+    _id: ObjectId("64aee378b77990bcac0c5f24"),
+    Orderid: 104,
+    Customerid: 14,
+    Order_datetime: ISODate("2023-07-12T02:12:31.000Z"),
+    Shipped_datetime: ISODate("2023-07-12T03:18:10.000Z"),
+    Total_amount: 129.1
+  },
+  {
+    _id: ObjectId("64aee398b77990bcac0c5f25"),
+    Orderid: 105,
+    Customerid: 15,
+    Order_datetime: ISODate("2023-07-12T03:56:31.000Z"),
+    Shipped_datetime: ISODate("2023-07-12T04:18:10.000Z"),
+    Total_amount: 189.1
+  },
+  {
+    _id: ObjectId("64aee3b2b77990bcac0c5f26"),
+    Orderid: 106,
+    Customerid: 16,
+    Order_datetime: ISODate("2023-07-12T01:06:31.000Z"),
+    Shipped_datetime: ISODate("2023-07-12T01:18:10.000Z"),
+    Total_amount: 289.1
+  }
+]
+
+6. Create a database as Employee and create collection as emp_det, insert five documents and remove collection and delete the employee. Use drop () and show method to differentiate deletion of collections and database.
+
+batch17> use Employee
+switched to db Employee
+Employee> db.createCollection("emp_det")
+{ ok: 1 }
+Employee> db.emp_det.insertOne({"empid":"em01","Name":"Subash"})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64aee73db77990bcac0c5f2a")
+}
+Employee> db.emp_det.insertOne({"empid":"em02","Name":"Sailesh"})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64aee748b77990bcac0c5f2b")
+}
+Employee> db.emp_det.insertOne({"empid":"em03","Name":"Amuthavan"})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64aee755b77990bcac0c5f2c")
+}
+Employee> db.emp_det.insertOne({"empid":"em04","Name":"Aravind"})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64aee75fb77990bcac0c5f2d")
+}
+Employee> db.emp_det.insertOne({"empid":"em05","Name":"Ashok"})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64aee76eb77990bcac0c5f2e")
+}
+Employee> db.emp_det.find().pretty()
+[
+  {
+    _id: ObjectId("64aee73db77990bcac0c5f2a"),
+    empid: 'em01',
+    Name: 'Subash'
+  },
+  {
+    _id: ObjectId("64aee748b77990bcac0c5f2b"),
+    empid: 'em02',
+    Name: 'Sailesh'
+  },
+  {
+    _id: ObjectId("64aee755b77990bcac0c5f2c"),
+    empid: 'em03',
+    Name: 'Amuthavan'
+  },
+  {
+    _id: ObjectId("64aee75fb77990bcac0c5f2d"),
+    empid: 'em04',
+    Name: 'Aravind'
+  },
+  {
+    _id: ObjectId("64aee76eb77990bcac0c5f2e"),
+    empid: 'em05',
+    Name: 'Ashok'
+  }
+]
+
+
+Remove Collection
+-----------
+
+Employee> show collections
+emp_det
+Employee> db.emp_det.drop()
+true
+Employee> show collections
+
+Employee>
+
+Employee> db.dropDatabase()
+{ ok: 1, dropped: 'Employee' }
+

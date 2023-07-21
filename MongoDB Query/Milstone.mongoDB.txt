@@ -1,0 +1,470 @@
+1.  Write a MongoDB query to display at least 10 details of the documents of  book_id, Btitle, authors in array and
+ price for all the documents in the collection Bookstore. 
+
+admin> db.books.find()
+[
+  {
+    _id: ObjectId("64b27a8c6ade62003a9ae140"),
+    bid: 101,
+    btitle: 'the india story',
+    author_name: 'bimal',
+    price: 500
+  },
+  {
+    _id: ObjectId("64b27b766ade62003a9ae141"),
+    bid: 102,
+    btitle: 'the london adventure',
+    author_name: 'ruskin',
+    price: 900
+  },
+  {
+    _id: ObjectId("64b27b766ade62003a9ae142"),
+    bid: 103,
+    btitle: 'a place called home',
+    author_name: 'preeti shenoy',
+    price: '600'
+  },
+  {
+    _id: ObjectId("64b27c2f6ade62003a9ae143"),
+    bid: 104,
+    btitle: 'lal salam',
+    author_name: 'smriti irani',
+    price: 1000
+  },
+  {
+    _id: ObjectId("64b27c2f6ade62003a9ae144"),
+    bid: 105,
+    btitle: 'queen of fire',
+    author_name: 'devika rangachari',
+    price: '1500'
+  },
+  {
+    _id: ObjectId("64b27d246ade62003a9ae145"),
+    bid: 106,
+    btitle: 'a song of india',
+    author_name: 'ruskin bond',
+    price: 2400
+  },
+  {
+    _id: ObjectId("64b27d246ade62003a9ae146"),
+    bid: 107,
+    btitle: 'if it bleeds',
+    author_name: 'stephen king',
+    price: '3500'
+  },
+  {
+    _id: ObjectId("64b27dae6ade62003a9ae147"),
+    bid: 108,
+    btitle: 'oh mizoram',
+    author_name: 'ps sreedharan',
+    price: 5700
+  },
+  {
+    _id: ObjectId("64b27dae6ade62003a9ae148"),
+    bid: 109,
+    btitle: 'the endgame',
+    author_name: 'hussain zaidi',
+    price: '4000'
+  }
+]
+
+2. Write a MongoDB query to display the fields Btitle,  authors and price but exclude the bookid for all the
+documents in the collection Bookstore.
+
+admin> db.books.find({},{btitle:1,auther_name:1,price:1})
+[
+  {
+    _id: ObjectId("64b27a8c6ade62003a9ae140"),
+    btitle: 'the india story',
+    price: 500
+  },
+  {
+    _id: ObjectId("64b27b766ade62003a9ae141"),
+    btitle: 'the london adventure',
+    price: 900
+  },
+  {
+    _id: ObjectId("64b27b766ade62003a9ae142"),
+    btitle: 'a place called home',
+    price: '600'
+  },
+  {
+    _id: ObjectId("64b27c2f6ade62003a9ae143"),
+    btitle: 'lal salam',
+    price: 1000
+  },
+  {
+    _id: ObjectId("64b27c2f6ade62003a9ae144"),
+    btitle: 'queen of fire',
+    price: '1500'
+  },
+  {
+    _id: ObjectId("64b27d246ade62003a9ae145"),
+    btitle: 'a song of india',
+    price: 2400
+  },
+  {
+    _id: ObjectId("64b27d246ade62003a9ae146"),
+    btitle: 'if it bleeds',
+    price: '3500'
+  },
+  {
+    _id: ObjectId("64b27dae6ade62003a9ae147"),
+    btitle: 'oh mizoram',
+    price: 5700
+  },
+  {
+    _id: ObjectId("64b27dae6ade62003a9ae148"),
+    btitle: 'the endgame',
+    price: '4000'
+  }
+]
+
+
+3. Write a MongoDB query to display the first 3 books based on similar authors.
+
+admin> db.books.find({"author_name":"stephen king"},{btitle:1,"author_name":1,_id:0})
+[
+  { btitle: 'if it bleeds', author_name: 'stephen king' },
+  { btitle: 'relentless', author_name: 'stephen king' },
+  { btitle: 'habba', author_name: 'stephen king' }
+]
+
+
+4.Write a MongoDB query to find the book price more than 1500.
+
+admin> db.books.find({price:{$gt:1500}})
+[
+  {
+    _id: ObjectId("64b27d246ade62003a9ae145"),
+    bid: 106,
+    btitle: 'a song of india',
+    author_name: 'ruskin bond',
+    price: 2400
+  },
+  {
+    _id: ObjectId("64b27dae6ade62003a9ae147"),
+    bid: 108,
+    btitle: 'oh mizoram',
+    author_name: 'ps sreedharan',
+    price: 5700
+  },
+  {
+    _id: ObjectId("64b2821f6ade62003a9ae149"),
+    bid: 110,
+    btitle: 'relentless',
+    author_name: 'stephen king',
+    price: 2400
+  }
+]
+
+
+5. Write a MongoDB query to find the book title who's price is  more than 800 but less than 2000.
+
+admin> db.books.find({$and:[{price:{$gt:800}},{price:{$lt:2000}}]})
+[
+  {
+    _id: ObjectId("64b27b766ade62003a9ae141"),
+    bid: 102,
+    btitle: 'the london adventure',
+    author_name: 'ruskin',
+    price: 900
+  },
+  {
+    _id: ObjectId("64b27c2f6ade62003a9ae143"),
+    bid: 104,
+    btitle: 'lal salam',
+    author_name: 'smriti irani',
+    price: 1000
+  }
+]
+
+
+6. Write a MongoDB query to arrange the book name of the bookstore in ascending order along with all the columns. 
+
+admin> db.books.find().sort({btitle:1})
+[
+  {
+    _id: ObjectId("64b27b766ade62003a9ae142"),
+    bid: 103,
+    btitle: 'a place called home',
+    author_name: 'preeti shenoy',
+    price: '600'
+  },
+  {
+    _id: ObjectId("64b27d246ade62003a9ae145"),
+    bid: 106,
+    btitle: 'a song of india',
+    author_name: 'ruskin bond',
+    price: 2400
+  },
+  {
+    _id: ObjectId("64b2821f6ade62003a9ae14a"),
+    bid: 111,
+    btitle: 'habba',
+    author_name: 'stephen king',
+    price: '4500'
+  },
+  {
+    _id: ObjectId("64b27d246ade62003a9ae146"),
+    bid: 107,
+    btitle: 'if it bleeds',
+    author_name: 'stephen king',
+    price: '3500'
+  },
+  {
+    _id: ObjectId("64b27c2f6ade62003a9ae143"),
+    bid: 104,
+    btitle: 'lal salam',
+    author_name: 'smriti irani',
+    price: 1000
+  },
+  {
+    _id: ObjectId("64b27dae6ade62003a9ae147"),
+    bid: 108,
+    btitle: 'oh mizoram',
+    author_name: 'ps sreedharan',
+    price: 5700
+  },
+  {
+    _id: ObjectId("64b27c2f6ade62003a9ae144"),
+    bid: 105,
+    btitle: 'queen of fire',
+    author_name: 'devika rangachari',
+    price: '1500'
+  },
+  {
+    _id: ObjectId("64b2821f6ade62003a9ae149"),
+    bid: 110,
+    btitle: 'relentless',
+    author_name: 'stephen king',
+    price: 2400
+  },
+  {
+    _id: ObjectId("64b27dae6ade62003a9ae148"),
+    bid: 109,
+    btitle: 'the endgame',
+    author_name: 'hussain zaidi',
+    price: '4000'
+  },
+  {
+    _id: ObjectId("64b27a8c6ade62003a9ae140"),
+    bid: 101,
+    btitle: 'the india story',
+    author_name: 'bimal',
+    price: 500
+  },
+  {
+    _id: ObjectId("64b27b766ade62003a9ae141"),
+    bid: 102,
+    btitle: 'the london adventure',
+    author_name: 'ruskin',
+    price: 900
+  }
+]
+
+8. Write a MongoDB query to know whether the author in the authors list.
+
+admin> db.books.find({},{author_name:1})
+[
+  { _id: ObjectId("64b27a8c6ade62003a9ae140"), author_name: 'bimal' },
+  { _id: ObjectId("64b27b766ade62003a9ae141"), author_name: 'ruskin' },
+  {
+    _id: ObjectId("64b27b766ade62003a9ae142"),
+    author_name: 'preeti shenoy'
+  },
+  {
+    _id: ObjectId("64b27c2f6ade62003a9ae143"),
+    author_name: 'smriti irani'
+  },
+  {
+    _id: ObjectId("64b27c2f6ade62003a9ae144"),
+    author_name: 'devika rangachari'
+  },
+  {
+    _id: ObjectId("64b27d246ade62003a9ae145"),
+    author_name: 'ruskin bond'
+  },
+  {
+    _id: ObjectId("64b27d246ade62003a9ae146"),
+    author_name: 'stephen king'
+  },
+  {
+    _id: ObjectId("64b27dae6ade62003a9ae147"),
+    author_name: 'ps sreedharan'
+  },
+  {
+    _id: ObjectId("64b27dae6ade62003a9ae148"),
+    author_name: 'hussain zaidi'
+  },
+  {
+    _id: ObjectId("64b2821f6ade62003a9ae149"),
+    author_name: 'stephen king'
+  },
+  {
+    _id: ObjectId("64b2821f6ade62003a9ae14a"),
+    author_name: 'stephen king'
+  }
+]
+
+
+9.Write a MongoDB query to update & increase the book price Rs.500 in all book name as "MongoDB Practice".
+
+admin> db.books.update({btitle:"the india story"},{$inc:{price:500}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+admin> db.books.find()
+[
+  {
+    _id: ObjectId("64b27a8c6ade62003a9ae140"),
+    bid: 101,
+    btitle: 'the india story',
+    author_name: 'bimal',
+    price: 1000
+  },
+  {
+    _id: ObjectId("64b27b766ade62003a9ae141"),
+    bid: 102,
+    btitle: 'the london adventure',
+    author_name: 'ruskin',
+    price: 900
+  },
+  {
+    _id: ObjectId("64b27b766ade62003a9ae142"),
+    bid: 103,
+    btitle: 'a place called home',
+    author_name: 'preeti shenoy',
+    price: '600'
+  },
+  {
+    _id: ObjectId("64b27c2f6ade62003a9ae143"),
+    bid: 104,
+    btitle: 'lal salam',
+    author_name: 'smriti irani',
+    price: 1000
+  },
+  {
+    _id: ObjectId("64b27c2f6ade62003a9ae144"),
+    bid: 105,
+    btitle: 'queen of fire',
+    author_name: 'devika rangachari',
+    price: '1500'
+  },
+  {
+    _id: ObjectId("64b27d246ade62003a9ae145"),
+    bid: 106,
+    btitle: 'a song of india',
+    author_name: 'ruskin bond',
+    price: 2400
+  },
+  {
+    _id: ObjectId("64b27d246ade62003a9ae146"),
+    bid: 107,
+    btitle: 'if it bleeds',
+    author_name: 'stephen king',
+    price: '3500'
+  },
+  {
+    _id: ObjectId("64b27dae6ade62003a9ae147"),
+    bid: 108,
+    btitle: 'oh mizoram',
+    author_name: 'ps sreedharan',
+    price: 5700
+  },
+  {
+    _id: ObjectId("64b27dae6ade62003a9ae148"),
+    bid: 109,
+    btitle: 'the endgame',
+    author_name: 'hussain zaidi',
+    price: '4000'
+  },
+  {
+    _id: ObjectId("64b2821f6ade62003a9ae149"),
+    bid: 110,
+    btitle: 'relentless',
+    author_name: 'stephen king',
+    price: 2400
+  },
+  {
+    _id: ObjectId("64b2821f6ade62003a9ae14a"),
+    bid: 111,
+    btitle: 'habba',
+    author_name: 'stephen king',
+    price: '4500'
+  }
+]
+
+
+10. Write a MongoDB query to use Update modifiers ($set, $push,  $pull, $upsert) in bookstore.
+
+set
+---------
+admin> db.books.update({btitle:"a song of india"},{$set:{price:500}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+admin> db.books.find({btitle:"a song of india"})
+[
+  {
+    _id: ObjectId("64b27d246ade62003a9ae145"),
+    bid: 106,
+    btitle: 'a song of india',
+    author_name: 'ruskin bond',
+    price: 500,
+    author: [ 'ruskin bond' ]
+  }
+] 
+
+push
+------------
+admin> db.books.update({btitle:"a song of india"},{$push:{author:"ruskin bond"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+admin> db.books.find({btitle:"a song of india"})
+[
+  {
+    _id: ObjectId("64b27d246ade62003a9ae145"),
+    bid: 106,
+    btitle: 'a song of india',
+    author_name: 'ruskin bond',
+    price: 500,
+    author: [ 'ruskin bond' ]
+  }
+]
+
+pull
+---------
+admin> db.books.update({btitle:"a song of india"},{$pull:{author:"bimal"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+admin> db.books.find({btitle:"a song of india"})
+[
+  {
+    _id: ObjectId("64b27d246ade62003a9ae145"),
+    bid: 106,
+    btitle: 'a song of india',
+    author_name: 'ruskin bond',
+    price: 500,
+    author: [ 'ruskin bond' ]
+  }
+]
+

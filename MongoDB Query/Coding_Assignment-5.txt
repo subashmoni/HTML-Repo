@@ -1,0 +1,163 @@
+1. To search the name as "Bala" and Course as "B.E ECE" , if the match is found update his address field otherwise add a new document consist of name bala, course B.E ECE and given address using upsert method.
+
+subash> db.Student_Table.find({Name:"Bala",Course:"B.E. ECE"},{Name:1,Course:1})
+
+subash>
+
+subash> db.Student_Table.updateOne({Name:"Bala"},{$set:{Name:"Bala",Course:"B.E. ECE",M1:50,M2:60,M3:70,Subjects:['HTML','CSS'],"Personal.Age":21,"Personal.Dob":new Date("2002-11-05"),"Personal.Father Name":"Vijay","Personal.Mobile number":9877535643,"Personal.email":"vijay@gmail.com","Personal.Address":"Coimbatore"}},{upsert:true})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+subash> db.Student_Table.find({Name:"Bala"},{Name:1,Course:1,_id:0})
+[ { Name: 'Bala', Course: 'B.E. ECE' } ]
+
+2.To create a collections for product_details and update the price:32999.99 whose productid:103.
+
+subash> db.product_det.updateOne({product_id:"prd-03"},{$set:{price:32999.99}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+subash> db.product_det.find({product_id:"prd-03"},{product_id:1,price:1,_id:0})
+[ { product_id: 'prd-03', price: 32999.99 } ]
+
+3. To increment the price rate by 1500 for all the products.
+
+subash> db.product_det.updateMany({},{$inc:{price:1500}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 12,
+  modifiedCount: 12,
+  upsertedCount: 0
+}
+
+4.To update the min price among all the products to the productid:105.
+
+subash> db.product_det.find({},{product_id:1,price:1,"company.name":1,_id:0})
+[
+  { product_id: 'prd-001', company: { name: 'Apple' }, price: 46500 },
+  { product_id: 'prd-002', company: { name: 'Apple' }, price: 91500 },
+  { product_id: 'prd-03', company: { name: 'Apple' }, price: 34499.99 },
+  { product_id: 'prd-4', company: { name: 'Apple' }, price: 136500 },
+  { product_id: 'prd-05', company: { name: 'Samsung' }, price: 96500 },
+  { product_id: 'prd-06', company: { name: 'Samsung' }, price: 6500 },
+  { product_id: 'prd-07', company: { name: 'Samsung' }, price: 91500 },
+  { product_id: 'prd-08', company: { name: 'Oppo' }, price: 41500 },
+  { product_id: 'prd-09', company: { name: 'Oppo' }, price: 39500 },
+  { product_id: 'prd-10', company: { name: 'Oppo' }, price: 37500 },
+  { product_id: 'prd-11', company: { name: 'Vivo' }, price: 37500 },
+  { product_id: 'prd-12', company: { name: 'Vivo' }, price: 55500 }
+]
+subash> db.product_det.updateOne({product_id:"prd-05"},{$min:{price:1500}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+subash> db.product_det.find({"product_id":"prd-05"},{product_id:1,price:1,"company.name":1,_id:0})
+[ { product_id: 'prd-05', company: { name: 'Samsung' }, price: 1500 } ]
+
+
+5.To update the max price among all the products to the productid:107.
+
+subash> db.product_det.updateOne({product_id:"prd-07"},{$set:{"price":150000}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+kamesh> db.product_det.find({"product_id":"prd-07"},{product_id:1,price:1,"company.name":1,_id:0})
+[
+  { product_id: 'prd-07', company: { name: 'Samsung' }, price: 150000 }
+]
+
+6. To multiply the price rate by 3 for all the productid:105.
+
+subash> db.product_det.updateOne({product_id:"prd-05"},{$mul:{price:3}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+subash> db.product_det.find({"product_id":"prd-05"},{product_id:1,price:1,"company.name":1,_id:0})
+[ { product_id: 'prd-05', company: { name: 'Samsung' }, price: 4500 } ]
+
+7. To unset the price field from the productid:105.
+
+subash> db.product_det.updateOne({product_id:"prd-05"},{$unset:{price:""}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+kamesh> db.product_det.find({"product_id":"prd-05"},{product_id:1,price:1,"company.name":1,_id:0})
+[ { product_id: 'prd-05', company: { name: 'Samsung' } } ]
+
+8.To upsert the price to the productid: 105 and fix the price as 25789.60 (insert).
+
+subash> db.product_det.updateOne({product_id:"prd-05"},{$set:{price:25789.60}},{upsert:true})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+subash> db.product_det.find({"product_id":"prd-05"},{product_id:1,price:1,_id:0})
+[ { product_id: 'prd-05', price: 25789.6 } ]
+
+9. To upsert the price to the productid:107 as 78000.23 (update).
+
+subash> db.product_det.updateOne({product_id:"prd-07"},{$set:{price:78000.23}},{upsert:true})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+subash> db.product_det.find({"product_id":"prd-07"},{product_id:1,price:1,_id:0})
+[ { product_id: 'prd-07', price: 78000.23 } ]
+
+10. To rename the field productid to proid.
+
+subash> db.product_det.updateMany({},{$rename:{"product_id":"proid"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 12,
+  modifiedCount: 12,
+  upsertedCount: 0
+}
+subash> db.product_det.find({},{"proid":1,_id:0})
+[
+  { proid: 'prd-001' },
+  { proid: 'prd-002' },
+  { proid: 'prd-03' },
+  { proid: 'prd-4' },
+  { proid: 'prd-05' },
+  { proid: 'prd-06' },
+  { proid: 'prd-07' },
+  { proid: 'prd-08' },
+  { proid: 'prd-09' },
+  { proid: 'prd-10' },
+  { proid: 'prd-11' },
+  { proid: 'prd-12' }
+]
