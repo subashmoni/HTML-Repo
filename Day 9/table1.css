@@ -1,0 +1,12 @@
+.buz{
+    border: 2px solid black;
+    text-align: center;
+   margin-top: 5%;
+   margin-left: 350px;
+   border-spacing: 60px;
+   
+  }
+ th,tr{
+    background: 2px solid black;
+    border: 3px;
+ }

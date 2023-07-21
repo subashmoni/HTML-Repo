@@ -1,0 +1,30 @@
+.in{
+    border: 2px solid black;
+    margin: 0 auto;
+    text-align: center;
+    border-spacing: 100px;
+    border-collapse: collapse;
+    margin-top: 5%;
+    height: 500px;
+    width: 600px;
+    color: white;
+    }
+    tr:nth-child(1){
+        background-color: rgb(80, 51, 51);
+    }
+    tr:nth-child(2){
+        background-color: blue;
+    }
+    tr:nth-child(3){
+        background-color: rgb(76, 184, 76);
+    }
+    tr:nth-child(4){
+        background-color: rgb(216, 216, 67);
+    }
+    tr:nth-child(5){
+        background-color: rgb(204, 63, 63);
+    }
+    tr:nth-child(6){
+        background-color: rgb(145, 145, 209);
+    }
+    
