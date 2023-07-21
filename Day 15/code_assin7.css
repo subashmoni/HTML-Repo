@@ -1,0 +1,11 @@
+.row{
+    background-color: #f5f7fa;
+}
+h1{
+    letter-spacing: 5px;
+    color: #183b56;
+}
+.col-12 button{
+    color: #ff9f00;
+    border: 2px solid #ff9f00;
+}

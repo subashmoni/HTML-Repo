@@ -1,0 +1,18 @@
+.bg-img-4{
+    background-image: url('https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/ecommerce-carousel-1-img.png');
+}
+    .bg-img-5{
+    background-image: url('https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/ecommerce-carousel-2-img.png');
+}
+    .bg-img-6{
+    background-image: url('https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/ecommerce-carousel-3-img.png');
+ }
+    .carousel-image{
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* .carousel_size{
+    height: 80%;
+    width: 80%;
+} */

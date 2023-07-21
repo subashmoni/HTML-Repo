@@ -1,0 +1,10 @@
+.Cus-Linear-Body{
+    background-image: linear-gradient(to right,#f49541,#dd5d97 );
+    height: 100vh;
+    width: 100%;
+}
+
+
+h1{
+    color: #ad2167;
+}

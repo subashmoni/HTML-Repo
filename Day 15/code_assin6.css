@@ -1,0 +1,17 @@
+.container-fluid{
+    background-color: aquamarine;
+    height: 100vh;
+    width: 100%;
+}
+.card .card{
+    width: 100%;
+    text-align: center;
+    border: none;
+}
+.card .card img{
+    border-radius: 5px;
+}
+.card .mt-2{
+    text-decoration: none;
+    color: #ff9f00;
+}

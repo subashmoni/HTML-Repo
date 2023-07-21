@@ -1,0 +1,21 @@
+img{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
+.card-title{
+    color: #cced00;
+}
+.Main_Body{
+    background-color: #0d2436;
+    height: 98vh;
+    width: 100%;
+}
+p{
+    color: #9aa5b1;
+}
+.Main_Foot{
+    background-color: #001c32;
+    width: 100%;
+    height: 7vh;
+}

@@ -1,0 +1,67 @@
+body{
+    background-color: black !important;
+    height: 200vh !important;
+    width:  100% !important;
+}
+
+.border2{
+    border: solid 1px red;
+    width: 350px;
+    height: 320px;
+    margin-top: 100px;
+    border: none;
+}
+.logoimage{
+    background-image: url('https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/ecommerce-website-logo-img.png');
+    width: 60px;
+    height: 60px;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+}
+.icon1{
+    color: rgb(47, 47, 94);
+    font-size: 30px;
+
+}
+.para2{
+    color: rgb(133, 131, 131);
+    font-size: 20px;
+}
+.border3{
+    border: solid 1px red;
+    width: 350px;
+    height: 340px;
+    border: none;
+}
+.color1{
+    color: rgb(133, 131, 131);
+}
+.border4{
+    border: solid 1px red;
+    width: 350px;
+    height: 340px;
+    border: none;
+}
+.color2{
+    color: rgb(133, 131, 131);
+    font-weight: bold;
+}
+.font1{
+    font-size: 20px;
+}
+@media only screen and (max-width: 700px) {
+    .logoimage{
+        margin-left: 150px;
+    }
+    .logoimage1{
+        margin-left: 50px;
+    }
+}
+@media only screen and (max-width: 450px) {
+    .logoimage{
+
+        position: relative;
+        left: -80px;
+    }
+}

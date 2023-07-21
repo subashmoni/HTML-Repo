@@ -1,0 +1,23 @@
+.navbar_border{
+    border: 3px solid blue;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    font-size: 30px;
+    color: white;
+}
+body{
+    background-color: black;
+}
+.heading{
+    color: white;
+    position: relative;
+    padding-top: 200px;
+}
+
+
+@media only screen and (max-width: 800px) {
+       .bg_image{
+        order: -1;
+       }    
+}

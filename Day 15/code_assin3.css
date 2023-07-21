@@ -1,0 +1,13 @@
+.First{
+    color: orange;
+    border-radius: 50px;
+}
+.Two{
+    color: darkorange;
+    text-align: end;
+    font-weight: bolder;
+}
+.card{
+    border: 5px solid black;
+    border-radius: 10px;
+}

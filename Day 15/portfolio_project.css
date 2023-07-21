@@ -1,0 +1,16 @@
+body{
+    background-color: rgb(32, 32, 32);
+}
+.Text_Color{
+    color: yellowgreen;
+}
+.Underline{
+   text-decoration: none;
+   color: yellowgreen;
+}
+.bg-color{
+    background-color: rgb(73, 69, 69);
+}
+.color{
+    color: lightslategrey;
+}
